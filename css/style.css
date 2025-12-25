@@ -714,6 +714,8 @@ footer {
         padding: 1rem 1.5rem;
         background: rgba(5, 5, 10, 0.95);
         backdrop-filter: blur(20px);
+        overflow: visible;
+        /* Fixes mobile menu clipping */
     }
 
     .nav-links {
