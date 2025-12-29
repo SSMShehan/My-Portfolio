@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    const hiddenElements = document.querySelectorAll('.section-title, .about-content, .skill-card, .project-card, .contact-card');
+    const hiddenElements = document.querySelectorAll('.section-title, .about-content, .skill-card, .project-card, .contact-card, .education-card, .cert-card');
     hiddenElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3D Tilt Effect ---
     function initTiltEffect() {
-        const cards = document.querySelectorAll('.project-card, .skill-card, .stat-card, .about-feat-card');
+        const cards = document.querySelectorAll('.project-card, .skill-card, .stat-card, .about-feat-card, .education-card, .cert-card');
 
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -225,34 +225,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorOutline = document.querySelector('.cursor-outline');
 
     if (cursorDot && cursorOutline) {
-        window.addEventListener('mousemove', function (e) {
-            const posX = e.clientX;
-            const posY = e.clientY;
+        // Only enable custom cursor on non-touch/large screens
+        if (window.matchMedia("(min-width: 992px)").matches) {
+            window.addEventListener('mousemove', function (e) {
+                const posX = e.clientX;
+                const posY = e.clientY;
 
-            // Dot follows instantly
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
+                // Dot follows instantly
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
 
-            // Outline follows with slight delay/animation via CSS transition or direct update
-            // Using animate for smoother trailing effect
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
-
-        // Add hover effect for interactive elements
-        // Select all typical interactive elements
-        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .menu-toggle, input, textarea');
-
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.classList.add('cursor-hover');
+                // Outline follows with slight delay/animation via CSS transition or direct update
+                // Using animate for smoother trailing effect
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
             });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.classList.remove('cursor-hover');
+
+            // Add hover effect for interactive elements
+            // Select all typical interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .menu-toggle, input, textarea');
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.classList.add('cursor-hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.classList.remove('cursor-hover');
+                });
             });
-        });
+        } else {
+            // Hide custom cursor on mobile/tablet
+            cursorDot.style.display = 'none';
+            cursorOutline.style.display = 'none';
+        }
     }
 
     // --- Active Link Highlighter (Robust Scroll Spy) ---
