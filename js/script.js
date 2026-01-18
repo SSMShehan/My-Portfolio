@@ -313,4 +313,62 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
+
+    // --- Show More Certificates Logic ---
+    const certCards = document.querySelectorAll('.cert-card');
+    const showMoreContainer = document.querySelector('.show-more-container');
+    const showMoreBtn = document.getElementById('show-more-certs-btn');
+    const initialVisibleCount = 3;
+
+    if (certCards.length > initialVisibleCount) {
+        // Show button if we have more certs than the limit
+        if (showMoreContainer) {
+            showMoreContainer.style.display = 'block';
+        }
+
+        // Hide extra certs initially
+        certCards.forEach((card, index) => {
+            if (index >= initialVisibleCount) {
+                card.style.display = 'none';
+                card.classList.add('hidden-cert'); // Mark as hidden for logic
+            }
+        });
+
+        // Toggle logic
+        if (showMoreBtn) {
+            showMoreBtn.addEventListener('click', () => {
+                const hiddenCerts = document.querySelectorAll('.hidden-cert');
+                const isShowingMore = showMoreBtn.getAttribute('data-expanded') === 'true';
+
+                if (!isShowingMore) {
+                    // Show all
+                    certCards.forEach(card => {
+                        card.style.display = 'flex'; // Restore display (was block or flex depending on css, usually flex for cards)
+                        // Note: Using 'flex' or 'block' might break layout if specific display is needed. 
+                        // Let's check existing css or use '' to revert to css default if possible, 
+                        // but safer to match standard behaviour. 
+                        // Inspecting style.css would be safer, but for now assuming flex or block. 
+                        // Actually, let's safe it by clearing inline display style for those we want to show, 
+                        // assuming CSS handles the display type.
+                        card.style.display = '';
+                    });
+                    showMoreBtn.textContent = 'Show Less';
+                    showMoreBtn.setAttribute('data-expanded', 'true');
+                } else {
+                    // Hide extras again
+                    certCards.forEach((card, index) => {
+                        if (index >= initialVisibleCount) {
+                            card.style.display = 'none';
+                        }
+                    });
+                    showMoreBtn.textContent = 'Show More';
+                    showMoreBtn.setAttribute('data-expanded', 'false');
+                    
+                    // Optionally scroll back up to certifications section if needed
+                    // const certSection = document.getElementById('education');
+                    // if(certSection) certSection.scrollIntoView({behavior: 'smooth'});
+                }
+            });
+        }
+    }
 });

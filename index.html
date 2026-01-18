@@ -69,8 +69,9 @@
             </p>
             <div class="cta-group">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="images/Shehan%20CV%20Resume%20.pdf" download="Shehan_Madusanka_CV.pdf" class="btn btn-glow"><i
-                        class="fas fa-download" style="margin-right: 8px;"></i>Download CV</a>
+                <a href="#" onclick="alert('CV is currently being updated. Please check back later.'); return false;"
+                    class="btn btn-glow" style="opacity: 0.7;"><i class="fas fa-download"
+                        style="margin-right: 8px;"></i>Download CV</a>
                 <a href="#contact" class="btn btn-outline">Contact Me</a>
             </div>
         </div>
@@ -215,10 +216,47 @@
             <!-- Certifications Grid -->
             <h3 class="subsection-title">Certifications</h3>
             <div class="cert-grid">
-                <!-- Certificate 1 -->
+                <!-- Certificate 1: Google Cloud -->
+                <a href="#" class="cert-card" onclick="return false;">
+                    <div class="cert-img">
+                        <img src="images/Coursera Google Cloud Certificate.png" alt="Google Cloud Certificate">
+                    </div>
+                    <div class="cert-content">
+                        <h4>Google Cloud Fundamentals</h4>
+                        <span class="cert-issuer">Coursera</span>
+                        <span class="cert-date">Issued: 2025</span>
+                    </div>
+                </a>
+
+                <!-- Certificate 2: Amazon Q -->
+                <a href="#" class="cert-card" onclick="return false;">
+                    <div class="cert-img">
+                        <img src="images/Amazon Q Developer Certificate.png" alt="Amazon Q Developer Certificate">
+                    </div>
+                    <div class="cert-content">
+                        <h4>Amazon Q Developer</h4>
+                        <span class="cert-issuer">Amazon</span>
+                        <span class="cert-date">Issued: 2025</span>
+                    </div>
+                </a>
+
+                <!-- Certificate 3: Python -->
+                <a href="#" class="cert-card" onclick="return false;">
+                    <div class="cert-img">
+                        <img src="images/Python_for_Beginners_E-Certificate_page-0001.jpg"
+                            alt="Python for Beginners Certificate">
+                    </div>
+                    <div class="cert-content">
+                        <h4>Python for Beginners</h4>
+                        <span class="cert-issuer">University of Moratuwa</span>
+                        <span class="cert-date">Issued: 2024</span>
+                    </div>
+                </a>
+
+                <!-- Certificate 4: Cyber -->
                 <a href="https://coursera.org/share/ab4894085a66185591eec2253e926a78" target="_blank" class="cert-card">
                     <div class="cert-img">
-                        <img src="images/Coursera cyber security.jpg" alt="Coursera Cybersecurity Certificate">
+                        <img src="images/Coursera cyber security.png" alt="Coursera Cybersecurity Certificate">
                     </div>
                     <div class="cert-content">
                         <h4>IBM Cybersecurity</h4>
@@ -227,7 +265,7 @@
                     </div>
                 </a>
 
-                <!-- Certificate 2 -->
+                <!-- Certificate 5: Project Management -->
                 <a href="https://open.uom.lk/lms/mod/customcert/verify_certificate.php" target="_blank"
                     class="cert-card">
                     <div class="cert-img">
@@ -237,10 +275,14 @@
                     <div class="cert-content">
                         <h4>Foundations of Project Management</h4>
                         <span class="cert-issuer">University of Moratuwa</span>
-                        <span class="cert-date">Issued: 2025</span>
-                        <span class="cert-date" style="color: #a855f7; margin-top: 5px;">Code: mGLyH6OYzP</span>
+                        <span class="cert-date">Issued: 2024</span>
                     </div>
                 </a>
+            </div>
+
+            <!-- Show More Button -->
+            <div class="show-more-container" style="text-align: center; margin-top: 2rem; display: none;">
+                <button id="show-more-certs-btn" class="btn btn-outline" style="min-width: 150px;">Show More</button>
             </div>
         </div>
     </section>
@@ -251,15 +293,40 @@
         <div class="container">
             <h2 class="section-title">Selected <span class="accent-text">Work</span></h2>
             <div class="projects-grid">
+                <!-- Project New (School Management System) -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/student_ms.png" alt="School Management System"
+                            onerror="this.onerror=null;this.src='https://placehold.co/800x500?text=School+Management+System';">
+                    </div>
+                    <div class="project-info">
+                        <h3>School Management System</h3>
+                        <p>
+                            A comprehensive full-stack School Management System. Features student/staff management,
+                            attendance tracking, finance management, and an integrated AI assistant.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="skill-tag">Recall 19</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Tailwind CSS 4</span>
+                        </div>
+                        <!-- Link to be added later -->
+                    </div>
+                </div>
                 <!-- Project 1 -->
                 <div class="project-card">
                     <div class="project-image">
                         <!-- Sri Lanka Serandib GO (User Uploaded) -->
-                        <img src="images/serandib_go.jpg" alt="Tourism Management System"
-                            onerror="this.onerror=null;this.src='https://placehold.co/800x500?text=Tourism+Project';">
+                        <a href="https://serendib-go-travel.vercel.app" target="_blank">
+                            <img src="images/serandib_go_new.png" alt="Tourism Management System"
+                                onerror="this.onerror=null;this.src='https://placehold.co/800x500?text=Tourism+Project';">
+                        </a>
                     </div>
                     <div class="project-info">
-                        <h3>Tourism Management System</h3>
+                        <h3><a href="https://serendib-go-travel.vercel.app" target="_blank"
+                                style="text-decoration: none; color: inherit;">Tourism Management System</a></h3>
                         <p>
                             A full-stack tourism platform focused on Sri Lankan travel. Enables users to book tours,
                             hotels, and create custom itineraries.
@@ -271,6 +338,9 @@
                             <span class="skill-tag">JWT</span>
                             <span class="skill-tag">Google Maps</span>
                         </div>
+                        <a href="https://serendib-go-travel.vercel.app" target="_blank" class="btn btn-outline"
+                            style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.9rem;">Live Demo <i
+                                class="fas fa-external-link-alt"></i></a>
                     </div>
                 </div>
 
@@ -278,7 +348,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <!-- Modern Grocery Store / FreshGrocer (User Uploaded) -->
-                        <img src="images/grocery_fresh.jpg" alt="Grocery Ordering System"
+                        <img src="images/grocery_fresh_v2.png" alt="Grocery Ordering System"
                             onerror="this.onerror=null;this.src='https://placehold.co/800x500?text=Grocery+Project';">
                     </div>
                     <div class="project-info">
