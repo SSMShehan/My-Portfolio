@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shehan | Web Developer</title>
+    <title>Shehan | Full Stack Developer</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,22 +56,40 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="container hero-content">
-            <span class="accent-text"
-                style="margin-bottom: 1rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">Portfolio
-            </span>
-            <h1>Crafting Digital <br><span class="accent-text typing-text"></span><span class="cursor">|</span></h1>
-            <p class="role">IT Undergraduate & Full Stack Developer</p>
-            <p class="description">
-                Driven third-year IT undergraduate focused on full-stack development, creating clean, high-performance
-                applications with Java, Python, and the MERN stack.
-            </p>
-            <div class="cta-group">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#" onclick="alert('CV is currently being updated. Please check back later.'); return false;"
-                    class="btn btn-glow" style="opacity: 0.7;"><i class="fas fa-download"
-                        style="margin-right: 8px;"></i>Download CV</a>
-                <a href="#contact" class="btn btn-outline">Contact Me</a>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="accent-text"
+                    style="margin-bottom: 1rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; display: block;">Portfolio
+                </span>
+                <h1>Crafting Digital <br><span class="accent-text typing-text"></span><span class="cursor">|</span></h1>
+                <p class="role">IT Undergraduate & Full Stack Developer</p>
+                <p class="description">
+                    Driven third-year IT undergraduate focused on full-stack development, creating clean,
+                    high-performance
+                    applications with Java, Python, and the MERN stack.
+                </p>
+                <div class="cta-group">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="images/Shehan CV Resume.pdf" target="_blank" class="btn btn-glow"><i
+                            class="fas fa-download" style="margin-right: 8px;"></i>Download Resume</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <!-- Orbital Rings -->
+                <div class="orbit-ring orbit-1"></div>
+                <div class="orbit-ring orbit-2"></div>
+                <div class="orbit-ring orbit-3">
+                    <div class="orbit-planet planet-1"><i class="fab fa-react"></i></div>
+                    <div class="orbit-planet planet-2"><i class="fab fa-node-js"></i></div>
+                    <div class="orbit-planet planet-3"><i class="fab fa-python"></i></div>
+                    <div class="orbit-planet planet-4"><i class="fab fa-java"></i></div>
+                </div>
+
+                <!-- Main Image -->
+                <div class="hero-image-container tilt-effect">
+                    <img src="images/profilepic.PNG" alt="Shehan Madushanka" class="hero-profile-img">
+                </div>
             </div>
         </div>
     </section>
@@ -92,18 +111,8 @@
                         gaining hands-on industry experience through professional internships, sharpening both my
                         technical and communication skills.
                     </p>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <h3>3+</h3>
-                            <p>Years Learning</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3>5+</h3>
-                            <p>Projects Built</p>
-                        </div>
-                    </div>
                 </div>
-                <!-- Feature Card -->
+                <!-- Feature Card Column -->
                 <div class="about-feat-card">
                     <div class="code-window">
                         <div class="window-header">
@@ -125,6 +134,29 @@
                             <div class="line indent"> }</div>
                             <div class="line">}</div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Stats Grid (Bottom Left) -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>3+</h3>
+                        <p>Years Learning</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>5+</h3>
+                        <p>Projects Built</p>
+                    </div>
+                </div>
+
+                <!-- Location Video Card (Bottom Right) -->
+                <div class="location-video-card">
+                    <video class="inline-location-video" autoplay loop muted playsinline>
+                        <source src="images/earth-zoom.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <div class="live-indicator"><span class="live-dot"></span> Location</div>
+                        <span class="location-label"><i class="fas fa-satellite"></i> Colombo, Sri Lanka</span>
                     </div>
                 </div>
             </div>
@@ -352,7 +384,8 @@
                         </a>
                     </div>
                     <div class="project-info">
-                        <h3><a href="school-ms-details.html" style="text-decoration: none; color: inherit;">School Management System</a></h3>
+                        <h3><a href="school-ms-details.html" style="text-decoration: none; color: inherit;">School
+                                Management System</a></h3>
                         <p>
                             A comprehensive full-stack School Management System. Features student/staff management,
                             attendance tracking, finance management, and an integrated AI assistant.
@@ -365,7 +398,8 @@
                             <span class="skill-tag">Tailwind CSS 4</span>
                         </div>
                         <div class="project-actions">
-                            <a href="school-ms-details.html" class="btn btn-outline project-details-btn">View Details</a>
+                            <a href="school-ms-details.html" class="btn btn-outline project-details-btn">View
+                                Details</a>
                         </div>
                     </div>
                 </div>
@@ -411,7 +445,8 @@
                         </a>
                     </div>
                     <div class="project-info">
-                        <h3><a href="grocery-details.html" style="text-decoration: none; color: inherit;">Online Grocery System</a></h3>
+                        <h3><a href="grocery-details.html" style="text-decoration: none; color: inherit;">Online Grocery
+                                System</a></h3>
                         <p>
                             A web application using Java and MVC architecture for browsing products, managing carts, and
                             seamless order processing.
@@ -475,7 +510,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Show More Projects Button -->
             <div class="show-more-projects-container" style="text-align: center; margin-top: 2rem; display: none;">
                 <button id="show-more-projects-btn" class="btn btn-outline" style="min-width: 150px;">View More</button>
@@ -517,7 +552,7 @@
                         class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/shehan-madusanka-a99637235" target="_blank" class="social-link"><i
                         class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:shehanmadusanka775@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
             </div>
             <p style="color: var(--text-secondary); font-size: 0.9rem;">
                 &copy; 2026 Shehan
@@ -525,7 +560,13 @@
         </div>
     </footer>
 
-    <script src="js/script.js?v=2"></script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+
+    <script src="js/script.js?v=3"></script>
 </body>
 
 </html>

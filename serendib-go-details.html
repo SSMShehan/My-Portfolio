@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Serendib GO - Full-Stack Travel Management Platform</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta name="description"
     content="Project details page for Serendib GO - a full-stack travel management platform for the Sri Lankan tourism ecosystem." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -460,9 +461,13 @@
       <a href="index.html"
         class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white/75 transition hover:border-white/20 hover:bg-white/10">←
         Back to Portfolio</a>
-      <p class="mt-6">Serendib GO project details page built for a modern dark-theme developer portfolio.</p>
     </footer>
   </main>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollToTopBtn" class="fixed bottom-8 right-8 w-12 h-12 bg-[#8b5cf6] text-white border-none rounded-full text-xl flex items-center justify-center opacity-0 invisible translate-y-5 transition-all duration-300 z-[1000] shadow-[0_4px_15px_rgba(139,92,246,0.4)] hover:bg-[#7c3aed] hover:-translate-y-1 hover:scale-105 hover:shadow-[0_6px_20px_rgba(139,92,246,0.6)] cursor-pointer" aria-label="Scroll to top">
+      <i class="fas fa-chevron-up"></i>
+  </button>
 
   <script>
     const observer = new IntersectionObserver((entries) => {
@@ -475,6 +480,24 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    // Scroll to Top Logic
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    if (scrollToTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-5');
+          scrollToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+        } else {
+          scrollToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-5');
+          scrollToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        }
+      });
+
+      scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   </script>
 </body>
 
