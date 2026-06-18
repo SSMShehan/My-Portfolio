@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serendib GO - Full-Stack Travel Management Platform</title>
+  <meta name="description"
+    content="Project details page for Serendib GO - a full-stack travel management platform for the Sri Lankan tourism ecosystem." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            body: ['Outfit', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif']
+          },
+          colors: {
+            ink: '#030014',
+            panel: 'rgba(255,255,255,0.04)',
+            line: 'rgba(255,255,255,0.10)'
+          },
+          boxShadow: {
+            glow: '0 0 40px rgba(168,85,247,0.22), 0 24px 80px rgba(0,0,0,0.45)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --accent: linear-gradient(135deg, #6366f1 0%, #a855f7 52%, #ec4899 100%);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.18), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(236, 72, 153, 0.14), transparent 28%),
+        radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.10), transparent 26%),
+        #030014;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(20px) saturate(160%);
+    }
+
+    .accent-text {
+      background: var(--accent);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .grid-overlay {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 28%, rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .floaty {
+      animation: floaty 8s ease-in-out infinite;
+    }
+
+    .floaty-delay {
+      animation: floaty 10s ease-in-out infinite;
+      animation-delay: -4s;
+    }
+
+    @keyframes floaty {
+
+      0%,
+      100% {
+        transform: translateY(0px) translateX(0px);
+      }
+
+      50% {
+        transform: translateY(-14px) translateX(8px);
+      }
+    }
+
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shine::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
+      transform: translateX(-120%);
+      animation: sweep 6.5s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sweep {
+      0% {
+        transform: translateX(-120%);
+      }
+
+      35% {
+        transform: translateX(120%);
+      }
+
+      100% {
+        transform: translateX(120%);
+      }
+    }
+
+    .screenshot-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .glass-image-container:hover .screenshot-img {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+
+<body class="font-body">
+  <div class="fixed inset-0 pointer-events-none grid-overlay opacity-60"></div>
+  <div class="fixed -top-24 -left-24 h-96 w-96 rounded-full bg-fuchsia-500/15 blur-3xl floaty pointer-events-none">
+  </div>
+  <div
+    class="fixed top-20 right-0 h-[28rem] w-[28rem] rounded-full bg-indigo-500/15 blur-3xl floaty-delay pointer-events-none">
+  </div>
+
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#030014]/70 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
+      <a href="index.html"
+        class="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/10">
+        <span class="text-lg leading-none">←</span>
+        Back to Portfolio
+      </a>
+      <div class="hidden items-center gap-3 md:flex">
+        <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(74,222,128,0.9)]"></span>
+        <span class="text-xs uppercase tracking-[0.28em] text-white/55">Project Details</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <section class="reveal grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+      <div class="space-y-7">
+        <div
+          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white/75">
+          Selected Work
+        </div>
+        <div class="space-y-4">
+          <p class="text-sm uppercase tracking-[0.32em] text-white/45">Project Title</p>
+          <h1 class="font-display text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+            <span class="accent-text">Serendib GO</span><br> Full-Stack Travel Management Platform
+          </h1>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a href="https://github.com/SSMShehan/serendibgo_v2.git" target="_blank"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#030014] transition hover:scale-[1.02] hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+              <i class="fab fa-github text-lg"></i> View GitHub
+            </a>
+            <a href="https://serendib-go-travel.vercel.app" target="_blank"
+              class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+          </div>
+        </div>
+        <div class="glass rounded-[1.75rem] p-6 shadow-glow sm:p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-white/45">Overview</p>
+          <p class="mt-4 text-base leading-8 text-white/75 sm:text-lg">
+            Serendib GO is a comprehensive full-stack travel management platform tailored for the Sri Lankan tourism
+            ecosystem. It empowers tourists, guides, vehicle owners, and hotel managers to seamlessly list, book,
+            review, and manage local travel experiences. By centralizing bookings, payments, and role-based dashboards,
+            it simplifies trip planning and vendor management.
+          </p>
+        </div>
+        <div class="glass rounded-[1.75rem] p-6 sm:p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-white/45">The Problem It Solves</p>
+          <p class="mt-4 text-base leading-8 text-white/70 sm:text-lg">
+            Planning a comprehensive trip often forces tourists to use fragmented systems for hotels, transport, and
+            guides. For tourism operators, managing these independent bookings is equally chaotic. Serendib GO unifies
+            these services into a single marketplace, providing distinct, secure portals for every stakeholder—from
+            tourists booking a complete package to vehicle owners tracking their regional operations.
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal relative">
+        <div
+          class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-indigo-500/10 via-fuchsia-500/10 to-pink-500/10 blur-2xl">
+        </div>
+        <div class="glass shine relative overflow-hidden rounded-[2rem] border-white/15 p-4 shadow-glow">
+          <div class="rounded-[1.6rem] border border-white/10 bg-[#070716] p-4 sm:p-5">
+            <div class="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.28em] text-white/45">Main Mockup</p>
+                <h2 class="mt-2 font-display text-xl font-semibold text-white/90 sm:text-2xl">Serendib GO Dashboard
+                  Preview</h2>
+              </div>
+              <div
+                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/55">
+                UI Element</div>
+            </div>
+            <div class="grid gap-4 lg:grid-cols-[0.42fr_0.58fr]">
+              <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                <div class="mb-4 h-8 w-28 rounded-full bg-white/10"></div>
+                <div class="space-y-3">
+                  <div class="h-11 rounded-2xl bg-gradient-to-r from-indigo-500/35 to-fuchsia-500/20"></div>
+                  <div class="h-11 rounded-2xl bg-white/6"></div>
+                  <div class="h-11 rounded-2xl bg-white/6"></div>
+                  <div class="h-11 rounded-2xl bg-white/6"></div>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                    <div class="h-5 w-20 rounded-full bg-emerald-400/20"></div>
+                    <div class="mt-5 h-24 rounded-[1.1rem] bg-gradient-to-br from-emerald-400/20 to-cyan-400/10"></div>
+                  </div>
+                  <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                    <div class="h-5 w-24 rounded-full bg-fuchsia-400/20"></div>
+                    <div class="mt-5 h-24 rounded-[1.1rem] bg-gradient-to-br from-fuchsia-400/20 to-pink-400/10"></div>
+                  </div>
+                </div>
+                <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div class="h-4 w-32 rounded-full bg-white/15"></div>
+                      <div class="mt-3 h-3 w-52 rounded-full bg-white/8"></div>
+                    </div>
+                    <div class="h-10 w-10 rounded-2xl bg-gradient-to-br from-indigo-500/35 to-pink-500/20"></div>
+                  </div>
+                  <div class="mt-4 grid gap-3 sm:grid-cols-3">
+                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
+                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
+                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="reveal mt-20 lg:mt-24">
+      <div class="mb-8">
+        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Tech Stack</p>
+        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Built With a <span class="accent-text">Modern
+            Stack</span></h2>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-3">
+        <article class="glass rounded-[1.5rem] p-6">
+          <p class="text-xs uppercase tracking-[0.28em] text-white/40 mb-4">Frontend</p>
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
+                class="fab fa-react text-cyan-400"></i> React 18</span>
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
+                class="fas fa-bolt text-yellow-400"></i> Vite</span>
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
+                class="fab fa-css3-alt text-blue-400"></i> Tailwind CSS</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">DaisyUI</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Framer
+              Motion</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">React
+              Query</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">React
+              Router</span>
+          </div>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6">
+          <p class="text-xs uppercase tracking-[0.28em] text-white/40 mb-4">Backend</p>
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
+                class="fab fa-node-js text-emerald-400"></i> Node.js</span>
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
+                class="fas fa-server text-gray-300"></i> Express</span>
+            <span
+              class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Puppeteer</span>
+            <span
+              class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Nodemailer</span>
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
+                class="fas fa-key text-yellow-300"></i> JWT</span>
+          </div>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6">
+          <p class="text-xs uppercase tracking-[0.28em] text-white/40 mb-4">Database & Cloud</p>
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
+                class="fas fa-leaf text-green-500"></i> MongoDB</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Mongoose
+              ODM</span>
+            <span
+              class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Cloudinary</span>
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
+                class="fas fa-cloud text-white"></i> Vercel</span>
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
+                class="fab fa-stripe-s text-indigo-400"></i> Stripe API</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal mt-20 lg:mt-24">
+      <div class="mb-8">
+        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Key Features</p>
+        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Key Features & <span class="accent-text">Core
+            Functionalities</span></h2>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-2">
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-fuchsia-300" stroke="currentColor"
+            stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">Multi-Role Ecosystem</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Dedicated, secure flows for Tourists, Guides, Drivers, Vehicle
+            Owners, Hotel Owners, Staff, and Admins to manage their respective functions.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-emerald-300" stroke="currentColor"
+            stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">Geospatial Vehicle Marketplace</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Advanced vehicle search based on location and date
+            availability, calculating real-world distances to connect tourists with nearby drivers.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-cyan-300" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">Integrated Bookings & Payments</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">End-to-end booking capabilities for tours, hotels, and
+            vehicles with secure Stripe payment processing and automated refund handling.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-amber-300" stroke="currentColor"
+            stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">Trust & Moderation</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">A robust review system enforcing uniqueness constraints (one
+            review per booking/guide) with helpful metrics, verified flags, and admin moderation tools.</p>
+        </article>
+        <article
+          class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20 lg:col-span-2">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-pink-300" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">Automated Exports & Notifications</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Features Puppeteer-driven automated PDF generation for
+            reports/tickets, alongside real-time notifications via Socket.IO to keep all parties updated.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal mt-20 lg:mt-24">
+      <div class="mb-8">
+        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Architecture & Challenges</p>
+        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Engineering Decisions <span class="accent-text">&
+            Tradeoffs</span></h2>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+        <article class="glass rounded-[1.6rem] p-6 sm:p-8">
+          <p class="text-sm uppercase tracking-[0.26em] text-white/45">Engineering Decisions</p>
+          <div class="mt-5 space-y-5 text-white/72">
+            <div>
+              <h3 class="font-display text-xl font-semibold text-white">Geospatial Availability & Search</h3>
+              <p class="mt-2 text-sm leading-7 text-white/65">To make the vehicle marketplace efficient, I utilized
+                Mongoose's <code>2dsphere</code> indexing. This allowed the implementation of instance methods to
+                calculate distances and determine availability windows dynamically, keeping complex location-based
+                queries optimized and database-friendly.</p>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-semibold text-white">Multi-Role Security & Stateful Auth</h3>
+              <p class="mt-2 text-sm leading-7 text-white/65">Managing permissions across seven different user roles
+                required a highly robust auth architecture. I implemented a secure JWT issuance system combined with
+                password reset, email verification flows, pre-save hashing, and <code>changedPasswordAfter</code> logic
+                to enforce strict access control across the platform.</p>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-semibold text-white">Payment & Operational Reliability</h3>
+              <p class="mt-2 text-sm leading-7 text-white/65">Integrating Stripe (with webhooks) alongside Cloudinary
+                for media and Puppeteer for PDF generation required careful orchestration. I built in idempotency,
+                webhook verification, and explicit request-size limits to mitigate operational failures and handle large
+                media/file streams safely under production load.</p>
+            </div>
+          </div>
+        </article>
+        <aside class="grid gap-5">
+          <article class="glass rounded-[1.6rem] p-6">
+            <p class="text-sm uppercase tracking-[0.26em] text-white/45">The System Stores</p>
+            <ul class="mt-4 space-y-3 text-sm leading-7 text-white/65">
+              <li>User Profiles, Role permissions, Booking Records</li>
+              <li>Vehicle Listings, Geospatial Locations, Tour Packages</li>
+              <li>Hotel Details, Room Availability, Review Metrics</li>
+              <li>Payment Webhooks, Invoice PDFs, Media Assets</li>
+            </ul>
+          </article>
+          <article class="glass rounded-[1.6rem] p-6">
+            <p class="text-sm uppercase tracking-[0.26em] text-white/45">Why It Matters</p>
+            <p class="mt-4 text-sm leading-7 text-white/65">The system successfully unifies fragmented tourism
+              operations into a cohesive experience, ensuring that performance stays top-tier even with complex
+              multi-table queries and real-time geospatial data tracking.</p>
+          </article>
+        </aside>
+      </div>
+    </section>
+
+
+
+    <footer class="reveal py-12 text-center text-sm text-white/45">
+      <a href="index.html"
+        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white/75 transition hover:border-white/20 hover:bg-white/10">←
+        Back to Portfolio</a>
+      <p class="mt-6">Serendib GO project details page built for a modern dark-theme developer portfolio.</p>
+    </footer>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+
+</html>

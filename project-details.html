@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VERITY - Smart Campus Management System</title>
+  <meta name="description"
+    content="Project details page for VERITY - a smart campus management system for students, lecturers, and managers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            body: ['Outfit', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif']
+          },
+          colors: {
+            ink: '#030014',
+            panel: 'rgba(255,255,255,0.04)',
+            line: 'rgba(255,255,255,0.10)'
+          },
+          boxShadow: {
+            glow: '0 0 40px rgba(168,85,247,0.22), 0 24px 80px rgba(0,0,0,0.45)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --accent: linear-gradient(135deg, #6366f1 0%, #a855f7 52%, #ec4899 100%);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.18), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(236, 72, 153, 0.14), transparent 28%),
+        radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.10), transparent 26%),
+        #030014;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(20px) saturate(160%);
+    }
+
+    .accent-text {
+      background: var(--accent);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .grid-overlay {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 28%, rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .floaty {
+      animation: floaty 8s ease-in-out infinite;
+    }
+
+    .floaty-delay {
+      animation: floaty 10s ease-in-out infinite;
+      animation-delay: -4s;
+    }
+
+    @keyframes floaty {
+
+      0%,
+      100% {
+        transform: translateY(0px) translateX(0px);
+      }
+
+      50% {
+        transform: translateY(-14px) translateX(8px);
+      }
+    }
+
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shine::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
+      transform: translateX(-120%);
+      animation: sweep 6.5s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sweep {
+      0% {
+        transform: translateX(-120%);
+      }
+
+      35% {
+        transform: translateX(120%);
+      }
+
+      100% {
+        transform: translateX(120%);
+      }
+    }
+  </style>
+</head>
+
+<body class="font-body">
+  <div class="fixed inset-0 pointer-events-none grid-overlay opacity-60"></div>
+  <div class="fixed -top-24 -left-24 h-96 w-96 rounded-full bg-fuchsia-500/15 blur-3xl floaty pointer-events-none">
+  </div>
+  <div
+    class="fixed top-20 right-0 h-[28rem] w-[28rem] rounded-full bg-indigo-500/15 blur-3xl floaty-delay pointer-events-none">
+  </div>
+
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#030014]/70 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
+      <a href="index.html"
+        class="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/10">
+        <span class="text-lg leading-none">←</span>
+        Back to Portfolio
+      </a>
+      <div class="hidden items-center gap-3 md:flex">
+        <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(74,222,128,0.9)]"></span>
+        <span class="text-xs uppercase tracking-[0.28em] text-white/55">Project Details</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <section class="reveal grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+      <div class="space-y-7">
+        <div
+          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white/75">
+          Selected Work
+        </div>
+        <div class="space-y-4">
+          <p class="text-sm uppercase tracking-[0.32em] text-white/45">Project Title</p>
+          <h1 class="font-display text-4xl font-bold leading-tight sm:text-5xl lg:text-7xl">
+            <span class="accent-text">VERITY</span><br> Smart Campus Management System
+          </h1>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a href="https://github.com/SSMShehan/Verity-Project.git" target="_blank"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#030014] transition hover:scale-[1.02] hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+              <i class="fab fa-github text-lg"></i> View GitHub
+            </a>
+            <a href="#"
+              class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+          </div>
+        </div>
+        <div class="glass rounded-[1.75rem] p-6 shadow-glow sm:p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-white/45">Overview</p>
+          <p class="mt-4 text-base leading-8 text-white/75 sm:text-lg">
+            VERITY is a smart campus management platform that streamlines project work, academic coordination, and
+            performance tracking for students, lecturers, and managers. It combines role-based dashboards, task and
+            report management, GitHub contribution analysis, AI-powered team insights, real-time notifications, and
+            admin controls into one integrated system.
+          </p>
+        </div>
+        <div class="glass rounded-[1.75rem] p-6 sm:p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-white/45">The Problem It Solves</p>
+          <p class="mt-4 text-base leading-8 text-white/70 sm:text-lg">
+            Managing academic projects often involves scattered tools for task tracking, code collaboration, and
+            grading. VERITY centralizes these workflows. By providing distinct, tailored portals for Students,
+            Lecturers, and Managers, it eliminates communication gaps and brings transparency to academic evaluations
+            and team progress.
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal relative">
+        <div
+          class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-indigo-500/10 via-fuchsia-500/10 to-pink-500/10 blur-2xl">
+        </div>
+        <div class="glass shine relative overflow-hidden rounded-[2rem] border-white/15 p-4 shadow-glow">
+          <div class="rounded-[1.6rem] border border-white/10 bg-[#070716] p-4 sm:p-5">
+            <div class="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.28em] text-white/45">Main Mockup</p>
+                <h2 class="mt-2 font-display text-xl font-semibold text-white/90 sm:text-2xl">VERITY Dashboard Preview
+                </h2>
+              </div>
+              <div
+                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/55">
+                Placeholder</div>
+            </div>
+            <div class="grid gap-4 lg:grid-cols-[0.42fr_0.58fr]">
+              <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                <div class="mb-4 h-8 w-28 rounded-full bg-white/10"></div>
+                <div class="space-y-3">
+                  <div class="h-11 rounded-2xl bg-gradient-to-r from-indigo-500/35 to-fuchsia-500/20"></div>
+                  <div class="h-11 rounded-2xl bg-white/6"></div>
+                  <div class="h-11 rounded-2xl bg-white/6"></div>
+                  <div class="h-11 rounded-2xl bg-white/6"></div>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                    <div class="h-5 w-20 rounded-full bg-emerald-400/20"></div>
+                    <div class="mt-5 h-24 rounded-[1.1rem] bg-gradient-to-br from-emerald-400/20 to-cyan-400/10"></div>
+                  </div>
+                  <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                    <div class="h-5 w-24 rounded-full bg-fuchsia-400/20"></div>
+                    <div class="mt-5 h-24 rounded-[1.1rem] bg-gradient-to-br from-fuchsia-400/20 to-pink-400/10"></div>
+                  </div>
+                </div>
+                <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div class="h-4 w-32 rounded-full bg-white/15"></div>
+                      <div class="mt-3 h-3 w-52 rounded-full bg-white/8"></div>
+                    </div>
+                    <div class="h-10 w-10 rounded-2xl bg-gradient-to-br from-indigo-500/35 to-pink-500/20"></div>
+                  </div>
+                  <div class="mt-4 grid gap-3 sm:grid-cols-3">
+                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
+                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
+                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="reveal mt-20 lg:mt-24">
+      <div class="mb-8">
+        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Tech Stack</p>
+        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Built With a <span class="accent-text">Practical
+            Stack</span></h2>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-3">
+        <article class="glass rounded-[1.5rem] p-6">
+          <p class="text-xs uppercase tracking-[0.28em] text-white/40">Frontend</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fab fa-react text-cyan-400"></i> React 19</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fab fa-js text-blue-400"></i> TypeScript</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-bolt text-yellow-400"></i> Vite</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fab fa-css3-alt text-blue-400"></i> Tailwind CSS 4</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-magic text-purple-400"></i> Framer Motion</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-chart-bar text-pink-400"></i> Chart.js</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-vial text-emerald-400"></i> Cypress</span>
+          </div>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6">
+          <p class="text-xs uppercase tracking-[0.28em] text-white/40">Backend</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fab fa-node-js text-emerald-400"></i> Node.js</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-server text-gray-300"></i> Express 5</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-network-wired text-white"></i> Socket.IO</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-layer-group text-red-400"></i> BullMQ</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-robot text-blue-300"></i> Google GenAI (Gemini)</span>
+          </div>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6">
+          <p class="text-xs uppercase tracking-[0.28em] text-white/40">Database & Cloud</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-database text-blue-400"></i> PostgreSQL</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-link text-indigo-400"></i> Prisma ORM</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-memory text-red-500"></i> Redis</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-cloud text-emerald-400"></i> Supabase JS</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal mt-20 lg:mt-24">
+      <div class="mb-8">
+        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Key Features</p>
+        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Key Features & <span class="accent-text">Core
+            Functionalities</span></h2>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-fuchsia-300" stroke="currentColor"
+            stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h10M4 18h16" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">Role-Based Portals</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Dedicated workspaces for Students (Kanban, time tracking),
+            Lecturers (analytics, grading), and Managers (system settings).</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-emerald-300" stroke="currentColor"
+            stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l4-4 4 4 6-6 4 4" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 19h18" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">AI-Powered Insights</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Leverages Google GenAI to generate project health insights and
+            lecturer-facing reports.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-cyan-300" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 12h6m-6 4h6m-8-8h10a2 2 0 012 2v6a2 2 0 01-2 2H7l-4 4v-4a2 2 0 012-2V10a2 2 0 012-2z" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">Seamless GitHub Integration</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Real-time repository linking, commit analysis, and automated
+            contribution scoring.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-amber-300" stroke="currentColor"
+            stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 3l8 4v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-5" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">Academic Integrity System</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Assignment handling with PDF/text extraction, plagiarism
+            queues, and risk scoring.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-pink-300" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 21s7-4.4 7-10a4 4 0 00-7-2.4A4 4 0 005 11c0 5.6 7 10 7 10z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 11h8" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">Gamification & Engagement</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">XP points, badges, and leaderboard caching to keep students
+            motivated.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-indigo-300" stroke="currentColor"
+            stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 3v18M18 3v18M4 7h16M4 17h16" />
+          </svg>
+          <h3 class="mt-5 font-display text-xl font-semibold">Real-Time Ecosystem</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Role-aware announcements and live notifications using
+            Socket.IO and Redis.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal mt-20 lg:mt-24">
+      <div class="mb-8">
+        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Architecture & Challenges</p>
+        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Engineering Decisions <span class="accent-text">&
+            Tradeoffs</span></h2>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+        <article class="glass rounded-[1.6rem] p-6 sm:p-8">
+          <p class="text-sm uppercase tracking-[0.26em] text-white/45">Engineering Decisions</p>
+          <div class="mt-5 space-y-5 text-white/72">
+            <div>
+              <h3 class="font-display text-xl font-semibold text-white">Practical System Design</h3>
+              <p class="mt-2 text-sm leading-7 text-white/65">Discarded over-engineered, resource-heavy concepts (like
+                blockchain) in favor of a highly feasible, scalable foundation using PostgreSQL, Prisma, and a modular
+                Express API.</p>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-semibold text-white">Real-World Team Coordination</h3>
+              <p class="mt-2 text-sm leading-7 text-white/65">Collaborated closely with actual academic team members to
+                design the Kanban and Sprint planning tools, ensuring the UI reflects true team dynamics rather than
+                theoretical workflows.</p>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-semibold text-white">Real-Time Data Handling</h3>
+              <p class="mt-2 text-sm leading-7 text-white/65">Implemented live notifications and leaderboard caching by
+                optimizing database queries and utilizing Redis alongside Socket.IO to ensure low latency across
+                multiple concurrent user sessions.</p>
+            </div>
+          </div>
+        </article>
+        <aside class="grid gap-5">
+          <article class="glass rounded-[1.6rem] p-6">
+            <p class="text-sm uppercase tracking-[0.26em] text-white/45">The System Stores</p>
+            <ul class="mt-4 space-y-3 text-sm leading-7 text-white/65">
+              <li>Users, roles, projects, tasks, sprints, and time logs</li>
+              <li>Weekly reports, activity logs, notifications, and system settings</li>
+              <li>Repositories, commits, contributor maps, and contribution scores</li>
+              <li>Assignments, submissions, plagiarism matches, and risk flags</li>
+            </ul>
+          </article>
+          <article class="glass rounded-[1.6rem] p-6">
+            <p class="text-sm uppercase tracking-[0.26em] text-white/45">Why It Matters</p>
+            <p class="mt-4 text-sm leading-7 text-white/65">The architecture stays readable and maintainable while still
+              covering live academic workflows, giving the system enough structure to scale without introducing
+              unnecessary complexity.</p>
+          </article>
+        </aside>
+      </div>
+    </section>
+
+
+
+    <footer class="reveal py-12 text-center text-sm text-white/45">
+      <a href="index.html"
+        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white/75 transition hover:border-white/20 hover:bg-white/10">←
+        Back to Portfolio</a>
+    </footer>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+
+</html>

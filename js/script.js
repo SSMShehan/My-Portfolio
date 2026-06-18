@@ -1,5 +1,112 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const projectDetails = {
+        verity: {
+            title: 'VERITY Smart Campus Management System',
+            summary: 'VERITY is a full-stack Smart Campus Management System built for SLIIT academic workflows.',
+            overview: 'VERITY centralizes student, lecturer, and manager operations into one platform. It is structured to support project management, task tracking, weekly reporting, announcements, GitHub-based contribution analysis, team health insights, real-time notifications, and admin controls.',
+            modules: [
+                'Student portal for project list, project creation, team management, kanban board, sprint planner, time tracking, file management, GitHub linking, submission station, weekly reports, and profile management',
+                'Lecturer portal for group dashboard, student progress review, fairness analytics, engagement analytics, report review, grading export, assignment management, and lecturer profile tools',
+                'Manager portal for dashboard, user directory, group approvals, module management, usage limits, system settings, and profile administration',
+                'Announcements with role-aware rich text content and file attachments',
+                'Notifications with live delivery, unread counts, mark-as-read actions, and manager-specific filtering',
+                'Submission handling with PDF/text extraction, plagiarism queue processing, and risk scoring'
+            ],
+            architecture: [
+                'Multi-portal frontend with separate student, lecturer, and manager experiences in App.tsx',
+                'Modular Express API in index.js with Socket.IO for live communication',
+                'Prisma and PostgreSQL for structured campus, project, and reporting data',
+                'Redis and BullMQ for cached flows and background processing',
+                'JWT authentication and role-aware access control'
+            ],
+            data: [
+                'Users, years, semesters, modules, projects, project members, tasks, sprints, and time logs',
+                'Activity logs, weekly reports, risk flags, contribution scores, repositories, commits, and contributor maps',
+                'Assignments, submissions, plagiarism matches, notifications, and system settings'
+            ],
+            flow: [
+                'Users authenticate and enter a role-specific portal',
+                'Projects are organized into tasks, sprint cycles, and weekly progress updates',
+                'GitHub activity and submissions are captured for analysis, review, and scoring',
+                'Lecturers and managers monitor progress, fairness, engagement, and system health'
+            ],
+            tech: [
+                'React 19', 'TypeScript', 'Vite', 'React Router', 'Tailwind CSS 4', 'Framer Motion', 'Chart.js', 'React Hook Form', 'Lucide React', 'Socket.IO client', 'Supabase JS', 'React Quill', 'tsParticles', 'react-parallax-tilt', 'Cypress',
+                'Node.js', 'Express 5', 'Prisma ORM', 'PostgreSQL', 'Redis', 'BullMQ', 'Socket.IO', 'JWT', 'bcryptjs', 'Multer', 'Zod', 'Axios', 'Google GenAI', 'PDFKit', 'pdf-parse'
+            ],
+            database: [
+                'User, Year, Semester, Module, Project, ProjectMember, Task, Sprint, TimeLog',
+                'ActivityLog, WeeklyReport, RiskFlag, ContributionScore, GithubRepo, GithubCommit, GithubContributorMap',
+                'Submission, Assignment, AssignmentSubmission, PlagiarismMatch, Notification, SystemSetting'
+            ],
+            portfolio: 'VERITY is a smart campus management platform that streamlines project work, academic coordination, and performance tracking for students, lecturers, and managers. It combines role-based dashboards, task and report management, GitHub contribution analysis, AI-powered team insights, real-time notifications, and admin controls into one integrated system.'
+        }
+    };
 
+    const modal = document.getElementById('project-modal');
+    const modalTitle = document.getElementById('project-modal-title');
+    const modalSummary = document.getElementById('project-modal-summary');
+    const modalOverview = document.getElementById('project-modal-overview');
+    const modalModules = document.getElementById('project-modal-modules');
+    const modalArchitecture = document.getElementById('project-modal-architecture');
+    const modalData = document.getElementById('project-modal-data');
+    const modalFlow = document.getElementById('project-modal-flow');
+    const modalTech = document.getElementById('project-modal-tech');
+
+    function populateList(listElement, items) {
+        if (!listElement) return;
+        listElement.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+    }
+
+    function populateTech(listElement, items) {
+        if (!listElement) return;
+        listElement.innerHTML = items.map(item => `<span class="skill-tag">${item}</span>`).join('');
+    }
+
+    function openProjectModal(projectKey) {
+        const data = projectDetails[projectKey];
+        if (!modal || !data) return;
+
+        if (modalTitle) modalTitle.textContent = data.title;
+        if (modalSummary) modalSummary.textContent = data.summary;
+        if (modalOverview) modalOverview.textContent = data.overview;
+        populateList(modalModules, data.modules);
+        populateList(modalArchitecture, data.architecture);
+        populateList(modalData, data.data);
+        populateList(modalFlow, data.flow);
+        populateTech(modalTech, data.tech);
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+    }
+
+    function closeProjectModal() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+    }
+
+    document.querySelectorAll('.project-details-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            openProjectModal(button.dataset.project);
+        });
+    });
+
+    if (modal) {
+        modal.addEventListener('click', (event) => {
+            if (event.target.matches('[data-modal-close]')) {
+                closeProjectModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+                closeProjectModal();
+            }
+        });
+    }
     // --- Mobile Menu ---
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -220,47 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initTiltEffect();
 
-    // --- Custom Cursor Logic ---
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
 
-    if (cursorDot && cursorOutline) {
-        // Only enable custom cursor on non-touch/large screens
-        if (window.matchMedia("(min-width: 992px)").matches) {
-            window.addEventListener('mousemove', function (e) {
-                const posX = e.clientX;
-                const posY = e.clientY;
-
-                // Dot follows instantly
-                cursorDot.style.left = `${posX}px`;
-                cursorDot.style.top = `${posY}px`;
-
-                // Outline follows with slight delay/animation via CSS transition or direct update
-                // Using animate for smoother trailing effect
-                cursorOutline.animate({
-                    left: `${posX}px`,
-                    top: `${posY}px`
-                }, { duration: 500, fill: "forwards" });
-            });
-
-            // Add hover effect for interactive elements
-            // Select all typical interactive elements
-            const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .menu-toggle, input, textarea');
-
-            interactiveElements.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursorOutline.classList.add('cursor-hover');
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursorOutline.classList.remove('cursor-hover');
-                });
-            });
-        } else {
-            // Hide custom cursor on mobile/tablet
-            cursorDot.style.display = 'none';
-            cursorOutline.style.display = 'none';
-        }
-    }
 
     // --- Active Link Highlighter (Robust Scroll Spy) ---
     const sections = document.querySelectorAll('section');
@@ -367,6 +434,47 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Optionally scroll back up to certifications section if needed
                     // const certSection = document.getElementById('education');
                     // if(certSection) certSection.scrollIntoView({behavior: 'smooth'});
+                }
+            });
+        }
+    }
+
+    // --- Show More Projects Logic ---
+    const projectCards = document.querySelectorAll('.project-card');
+    const showMoreProjectsContainer = document.querySelector('.show-more-projects-container');
+    const showMoreProjectsBtn = document.getElementById('show-more-projects-btn');
+    const initialVisibleProjectsCount = 4;
+
+    if (projectCards.length > initialVisibleProjectsCount) {
+        if (showMoreProjectsContainer) {
+            showMoreProjectsContainer.style.display = 'block';
+        }
+
+        projectCards.forEach((card, index) => {
+            if (index >= initialVisibleProjectsCount) {
+                card.style.display = 'none';
+                card.classList.add('hidden-project');
+            }
+        });
+
+        if (showMoreProjectsBtn) {
+            showMoreProjectsBtn.addEventListener('click', () => {
+                const isShowingMore = showMoreProjectsBtn.getAttribute('data-expanded') === 'true';
+
+                if (!isShowingMore) {
+                    projectCards.forEach(card => {
+                        card.style.display = '';
+                    });
+                    showMoreProjectsBtn.textContent = 'View Less';
+                    showMoreProjectsBtn.setAttribute('data-expanded', 'true');
+                } else {
+                    projectCards.forEach((card, index) => {
+                        if (index >= initialVisibleProjectsCount) {
+                            card.style.display = 'none';
+                        }
+                    });
+                    showMoreProjectsBtn.textContent = 'View More';
+                    showMoreProjectsBtn.setAttribute('data-expanded', 'false');
                 }
             });
         }

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Management System</title>
+  <meta name="description"
+    content="Project details page for School Management System - a comprehensive, full-stack educational administration platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            body: ['Outfit', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif']
+          },
+          colors: {
+            ink: '#030014',
+            panel: 'rgba(255,255,255,0.04)',
+            line: 'rgba(255,255,255,0.10)'
+          },
+          boxShadow: {
+            glow: '0 0 40px rgba(56,189,248,0.22), 0 24px 80px rgba(0,0,0,0.45)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --accent: linear-gradient(135deg, #38bdf8 0%, #818cf8 52%, #c084fc 100%);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.18), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(129, 140, 248, 0.14), transparent 28%),
+        radial-gradient(circle at 80% 80%, rgba(192, 132, 252, 0.10), transparent 26%),
+        #030014;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(20px) saturate(160%);
+    }
+
+    .accent-text {
+      background: var(--accent);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .grid-overlay {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 28%, rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .floaty {
+      animation: floaty 8s ease-in-out infinite;
+    }
+
+    .floaty-delay {
+      animation: floaty 10s ease-in-out infinite;
+      animation-delay: -4s;
+    }
+
+    @keyframes floaty {
+
+      0%,
+      100% {
+        transform: translateY(0px) translateX(0px);
+      }
+
+      50% {
+        transform: translateY(-14px) translateX(8px);
+      }
+    }
+
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shine::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
+      transform: translateX(-120%);
+      animation: sweep 6.5s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sweep {
+      0% {
+        transform: translateX(-120%);
+      }
+
+      35% {
+        transform: translateX(120%);
+      }
+
+      100% {
+        transform: translateX(120%);
+      }
+    }
+  </style>
+</head>
+
+<body class="font-body">
+  <div class="fixed inset-0 pointer-events-none grid-overlay opacity-60"></div>
+  <div class="fixed -top-24 -left-24 h-96 w-96 rounded-full bg-sky-500/15 blur-3xl floaty pointer-events-none">
+  </div>
+  <div
+    class="fixed top-20 right-0 h-[28rem] w-[28rem] rounded-full bg-indigo-500/15 blur-3xl floaty-delay pointer-events-none">
+  </div>
+
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#030014]/70 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
+      <a href="index.html"
+        class="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/10">
+        <span class="text-lg leading-none">←</span>
+        Back to Portfolio
+      </a>
+      <div class="hidden items-center gap-3 md:flex">
+        <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(74,222,128,0.9)]"></span>
+        <span class="text-xs uppercase tracking-[0.28em] text-white/55">Project Details</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <section class="reveal grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+      <div class="space-y-7">
+        <div
+          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white/75">
+          Selected Work
+        </div>
+        <div class="space-y-4">
+          <p class="text-sm uppercase tracking-[0.32em] text-white/45">Project Title</p>
+          <h1 class="font-display text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+            <span class="accent-text">School Management</span><br> Full-Stack Platform
+          </h1>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a href="#" target="_blank"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#030014] transition hover:scale-[1.02] hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+              <i class="fab fa-github text-lg"></i> View GitHub
+            </a>
+          </div>
+        </div>
+        <div class="glass rounded-[1.75rem] p-6 shadow-glow sm:p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-white/45">Overview</p>
+          <p class="mt-4 text-base leading-8 text-white/75 sm:text-lg">
+            This is a comprehensive, full-stack educational administration platform designed to streamline the operations of schools and educational institutions. It solves the critical problem of fragmented school management by unifying student enrollments, staff administration, real-time attendance tracking, and financial operations (fee collections) into a single, cohesive dashboard with multi-branch support.
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal relative">
+        <div
+          class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-sky-500/10 via-indigo-500/10 to-purple-500/10 blur-2xl">
+        </div>
+        <div class="glass shine relative overflow-hidden rounded-[2rem] border-white/15 p-4 shadow-glow">
+          <div class="rounded-[1.6rem] border border-white/10 bg-[#070716] p-4 sm:p-5">
+            <div class="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.28em] text-white/45">Main Mockup</p>
+                <h2 class="mt-2 font-display text-xl font-semibold text-white/90 sm:text-2xl">Dashboard Preview
+                </h2>
+              </div>
+              <div
+                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/55">
+                Placeholder</div>
+            </div>
+            <div class="grid gap-4 lg:grid-cols-[0.42fr_0.58fr]">
+              <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                <div class="mb-4 h-8 w-28 rounded-full bg-white/10"></div>
+                <div class="space-y-3">
+                  <div class="h-11 rounded-2xl bg-gradient-to-r from-sky-500/35 to-indigo-500/20"></div>
+                  <div class="h-11 rounded-2xl bg-white/6"></div>
+                  <div class="h-11 rounded-2xl bg-white/6"></div>
+                  <div class="h-11 rounded-2xl bg-white/6"></div>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                    <div class="h-5 w-20 rounded-full bg-sky-400/20"></div>
+                    <div class="mt-5 h-24 rounded-[1.1rem] bg-gradient-to-br from-sky-400/20 to-indigo-400/10"></div>
+                  </div>
+                  <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                    <div class="h-5 w-24 rounded-full bg-indigo-400/20"></div>
+                    <div class="mt-5 h-24 rounded-[1.1rem] bg-gradient-to-br from-indigo-400/20 to-purple-400/10"></div>
+                  </div>
+                </div>
+                <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div class="h-4 w-32 rounded-full bg-white/15"></div>
+                      <div class="mt-3 h-3 w-52 rounded-full bg-white/8"></div>
+                    </div>
+                    <div class="h-10 w-10 rounded-2xl bg-gradient-to-br from-sky-500/35 to-purple-500/20"></div>
+                  </div>
+                  <div class="mt-4 grid gap-3 sm:grid-cols-3">
+                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
+                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
+                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal mt-20 lg:mt-24">
+      <div class="mb-8">
+        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Tech Stack</p>
+        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Built With a <span class="accent-text">Robust Stack</span></h2>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-3">
+        <article class="glass rounded-[1.5rem] p-6">
+          <p class="text-xs uppercase tracking-[0.28em] text-white/40 mb-4">Frontend</p>
+          <div class="flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fab fa-react text-cyan-400"></i> React 19</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-bolt text-yellow-400"></i> Vite</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Tailwind CSS v4</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">React Router v7</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">TanStack Query</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">React Hook Form</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Zod</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Axios</span>
+          </div>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6">
+          <p class="text-xs uppercase tracking-[0.28em] text-white/40 mb-4">Backend</p>
+          <div class="flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fab fa-python text-blue-400"></i> Python</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">FastAPI</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Uvicorn</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Pydantic</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-key text-yellow-300"></i> JWT</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Argon2</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">ReportLab</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">OpenPyXL</span>
+          </div>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6">
+          <p class="text-xs uppercase tracking-[0.28em] text-white/40 mb-4">Database</p>
+          <div class="flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i class="fas fa-database text-blue-400"></i> PostgreSQL</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">SQLAlchemy</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Alembic</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal mt-20 lg:mt-24">
+      <div class="mb-8">
+        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Key Features</p>
+        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Key Features & <span class="accent-text">Core Functionalities</span></h2>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-2">
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <h3 class="mt-5 font-display text-xl font-semibold">Student & Staff Administration</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Complete system for managing student admissions, demographics, grade levels, and staff records.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <h3 class="mt-5 font-display text-xl font-semibold">Financial & Payment Processing</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Robust fee structure management and payment processing that automatically generates unique receipt numbers, tracks statuses, and issues digital receipts.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <h3 class="mt-5 font-display text-xl font-semibold">Multi-Branch Data Isolation</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">A hierarchical structure supporting multiple school branches. Admin users view all data, while branch staff view/modify strictly within their assigned branch.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <h3 class="mt-5 font-display text-xl font-semibold">Automated Reporting</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">On-demand generation of stylized, downloadable PDF and Excel reports for financial income summaries, payment histories, and student registries.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <h3 class="mt-5 font-display text-xl font-semibold">Attendance & RBAC</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">Dedicated workflows for logging daily attendance and secure authentication ensuring specific endpoints are protected by administrative roles.</p>
+        </article>
+        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
+          <h3 class="mt-5 font-display text-xl font-semibold">AI Tools Integration</h3>
+          <p class="mt-3 text-sm leading-7 text-white/65">An integrated suite of AI tools built into the frontend interface to assist with automated administrative tasks or data insights.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal mt-20 lg:mt-24">
+      <div class="mb-8">
+        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Architecture & Challenges</p>
+        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Technical Architecture <span class="accent-text">& Complexities</span></h2>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+        <article class="glass rounded-[1.6rem] p-6 sm:p-8">
+          <p class="text-sm uppercase tracking-[0.26em] text-white/45">Engineering Complexities</p>
+          <div class="mt-5 space-y-5 text-white/72">
+            <div>
+              <h3 class="font-display text-xl font-semibold text-white">Multi-Tenant Branch Architecture</h3>
+              <p class="mt-2 text-sm leading-7 text-white/65">Handling data isolation across different branches securely. The system dynamically intercepts the JWT token via FastAPI dependency injection, automatically appending branch-specific SQLAlchemy filters to all queries.</p>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-semibold text-white">Dynamic Report Generation & Streaming</h3>
+              <p class="mt-2 text-sm leading-7 text-white/65">Using ReportLab and OpenPyXL to aggregate multi-table database queries and stream resulting binary buffers directly to the client via StreamingResponse, optimizing memory usage and performance.</p>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-semibold text-white">Synchronized Type Safety</h3>
+              <p class="mt-2 text-sm leading-7 text-white/65">Zod + React Hook Form maps exactly to FastAPI Pydantic models. This end-to-end type-safe pipeline prevents malformed database entries and provides instant, localized feedback.</p>
+            </div>
+          </div>
+        </article>
+        <aside class="grid gap-5">
+          <article class="glass rounded-[1.6rem] p-6">
+            <p class="text-sm uppercase tracking-[0.26em] text-white/45">Architecture Patterns</p>
+            <ul class="mt-4 space-y-3 text-sm leading-7 text-white/65">
+              <li><strong>Backend Architecture:</strong> Modern Controller-Service-ORM Pattern using FastAPI dependency injection.</li>
+              <li><strong>Frontend Architecture:</strong> Feature-Sliced/Modular Pattern separating application logic by domain in <code>src/features/</code>.</li>
+              <li><strong>API Design:</strong> Decoupled SPA communicating with the backend over RESTful API architecture.</li>
+            </ul>
+          </article>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="reveal py-12 text-center text-sm text-white/45">
+      <a href="index.html"
+        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white/75 transition hover:border-white/20 hover:bg-white/10">←
+        Back to Portfolio</a>
+    </footer>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+
+</html>
