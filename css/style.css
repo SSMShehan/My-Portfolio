@@ -124,12 +124,13 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
+html, body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100vw;
   position: relative;
 }
 
@@ -529,6 +530,7 @@ h1, h2, h3, .serif-font {
   flex-direction: column;
   /* Cards stretch to fill full row height */
   min-height: 0;
+  min-width: 0;
   /* Vanilla-tilt handles the transform now */
 }
 
@@ -1415,4 +1417,30 @@ textarea.form-input { min-height: 150px; resize: vertical; }
   color: var(--btn-text);
   box-shadow: 0 0 25px rgba(0, 255, 102, 0.4);
   transform: translateY(-5px);
+}
+
+/* Mobile Overrides for GitHub Stats */
+@media (max-width: 768px) {
+  .github-stats-card {
+    padding: 1.5rem;
+  }
+  .gh-metrics {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  .stat-box {
+    padding: 0.8rem 0.5rem;
+  }
+  .stat-value {
+    font-size: 1.2rem;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+  }
+  .gh-graph-header h3 {
+    font-size: 0.9rem !important;
+  }
+  .gh-graph-header span {
+    font-size: 0.75rem !important;
+  }
 }
