@@ -13,6 +13,9 @@
   --glow-cyan: #00f0ff;
   --glow-green: #00ff66;
   --glow-purple: #b500ff;
+
+  /* Image Filters */
+  --profile-brightness: brightness(0.85);
   
   /* Borders & Shadows */
   --border-color: rgba(255, 255, 255, 0.08);
@@ -42,6 +45,9 @@
   --glow-cyan: #0284c7;
   --glow-green: #16a34a;
   --glow-purple: #9333ea;
+
+  /* Image Filters */
+  --profile-brightness: brightness(1);
   
   /* Borders & Shadows */
   --border-color: rgba(0, 0, 0, 0.08);
@@ -1124,6 +1130,7 @@ textarea.form-input { min-height: 150px; resize: vertical; }
   border-radius: 18px;
   /* Clip-path ensures any baked-in uneven borders from the original image are cropped out cleanly */
   clip-path: inset(2px round 16px);
+  filter: var(--profile-brightness);
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
 }
 
