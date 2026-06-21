@@ -16,6 +16,32 @@
 
   /* Image Filters */
   --profile-brightness: brightness(0.85);
+  --location-gradient: linear-gradient(to top, rgba(5,5,8,1) 0%, rgba(5,5,8,0) 100%);
+  --location-blend: luminosity;
+  --location-opacity: 0.8;
+  --chart-filter: invert(1) hue-rotate(180deg) brightness(1.2) drop-shadow(0 0 4px rgba(0, 255, 102, 0.3));
+  --chart-filter-hover: invert(1) hue-rotate(180deg) brightness(1.5) drop-shadow(0 0 8px rgba(0, 255, 102, 0.6));
+  --chart-bg: rgba(0, 0, 0, 0.2);
+
+  /* Code Window */
+  --code-bg: rgba(10, 10, 12, 0.8);
+  --code-header-bg: rgba(25, 25, 30, 0.9);
+  --code-keyword: #ff7b72;
+  --code-class: #d2a8ff;
+  --code-this: #79c0ff;
+  --code-prop: #8a8a9a;
+  --code-string: #a5d6ff;
+  --code-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+
+  /* Form & Glass Elements */
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-border: rgba(255, 255, 255, 0.1);
+  --project-gradient: linear-gradient(180deg, rgba(10, 10, 15, 0) 0%, rgba(10, 10, 15, 0.8) 100%);
+  --btn-text: #000;
+  --scroll-btn-bg: rgba(10, 10, 15, 0.8);
+  --mockup-bg: rgba(10, 10, 15, 0.8);
+  --mockup-skeleton: rgba(255, 255, 255, 0.1);
+  --mockup-skeleton-light: rgba(255, 255, 255, 0.05);
   
   /* Borders & Shadows */
   --border-color: rgba(255, 255, 255, 0.08);
@@ -48,7 +74,33 @@
 
   /* Image Filters */
   --profile-brightness: brightness(1);
-  
+  --location-gradient: linear-gradient(to top, rgba(248, 250, 252, 0.4) 0%, rgba(248, 250, 252, 0) 100%);
+  --location-blend: normal;
+  --location-opacity: 0.85;
+  --chart-filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+  --chart-filter-hover: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15)) brightness(1.02);
+  --chart-bg: rgba(255, 255, 255, 0.4);
+
+  /* Code Window */
+  --code-bg: rgba(255, 255, 255, 0.8);
+  --code-header-bg: rgba(240, 240, 245, 0.9);
+  --code-keyword: #d73a49;
+  --code-class: #6f42c1;
+  --code-this: #005cc5;
+  --code-prop: #6a737d;
+  --code-string: #032f62;
+  --code-shadow: inset 0 0 30px rgba(0,0,0,0.05);
+
+  /* Form & Glass Elements */
+  --input-bg: rgba(0, 0, 0, 0.03);
+  --input-border: rgba(0, 0, 0, 0.1);
+  --project-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(200, 210, 225, 0.4) 100%);
+  --btn-text: #fff;
+  --scroll-btn-bg: rgba(255, 255, 255, 0.8);
+  --mockup-bg: rgba(255, 255, 255, 0.6);
+  --mockup-skeleton: rgba(0, 0, 0, 0.08);
+  --mockup-skeleton-light: rgba(0, 0, 0, 0.04);
+
   /* Borders & Shadows */
   --border-color: rgba(0, 0, 0, 0.08);
   --border-amber: rgba(217, 119, 6, 0.4);
@@ -315,7 +367,7 @@ h1, h2, h3, .serif-font {
   padding: 0.8rem 1.8rem;
   border-radius: 50px;
   background: var(--glow-cyan);
-  color: #000 !important;
+  color: var(--btn-text) !important;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -476,13 +528,14 @@ h1, h2, h3, .serif-font {
 
 .btn-primary {
   background: var(--glow-amber);
-  color: #050505;
+  color: var(--btn-text);
   border: none;
   box-shadow: 0 0 20px rgba(245, 166, 35, 0.5);
 }
 .btn-primary:hover {
   box-shadow: 0 0 30px rgba(245, 166, 35, 0.8);
   transform: translateY(-2px);
+  color: var(--btn-text) !important;
 }
 
 .btn-outline {
@@ -791,20 +844,22 @@ h1, h2, h3, .serif-font {
 
 /* Code Window */
 .code-window {
-  background: rgba(10, 10, 12, 0.8);
+  background: var(--code-bg);
   border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
   overflow: hidden;
   font-family: 'Space Mono', monospace;
   font-size: 0.9rem;
-  box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+  box-shadow: var(--code-shadow);
+  transition: background 0.3s, box-shadow 0.3s;
 }
 .window-header {
-  background: rgba(25, 25, 30, 0.9);
+  background: var(--code-header-bg);
   padding: 0.8rem 1.2rem;
   display: flex;
   gap: 0.5rem;
   border-bottom: 1px solid var(--border-color);
+  transition: background 0.3s;
 }
 .dot {
   width: 12px;
@@ -815,15 +870,15 @@ h1, h2, h3, .serif-font {
 .dot.yellow { background: #ffbd2e; box-shadow: 0 0 5px #ffbd2e;}
 .dot.green { background: #27c93f; box-shadow: 0 0 5px #27c93f;}
 .code-content {
-  padding: 2rem;
-  color: #e0e0e0;
+  padding: 1.5rem;
   line-height: 1.8;
+  color: var(--text-primary);
 }
-.code-content .keyword { color: #ff7b72; text-shadow: 0 0 5px rgba(255, 123, 114, 0.3);}
-.code-content .class-name { color: #d2a8ff; text-shadow: 0 0 5px rgba(210, 168, 255, 0.3);}
-.code-content .this { color: #79c0ff; }
-.code-content .prop { color: #8a8a9a; }
-.code-content .string { color: #a5d6ff; }
+.code-content .keyword { color: var(--code-keyword); }
+.code-content .class-name { color: var(--code-class); }
+.code-content .this { color: var(--code-this); }
+.code-content .prop { color: var(--code-prop); }
+.code-content .string { color: var(--code-string); }
 .code-content .indent { padding-left: 2rem; }
 .code-content .double-indent { padding-left: 4rem; }
 
@@ -856,10 +911,10 @@ h1, h2, h3, .serif-font {
 }
 
 /* Additional Styles */
-.skill-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.8rem; color: var(--text-secondary); transition: all 0.3s; display: inline-block; margin-right: 0.5rem; margin-bottom: 0.5rem; }
+.skill-tag { background: var(--input-bg); border: 1px solid var(--input-border); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.8rem; color: var(--text-secondary); transition: all 0.3s; display: inline-block; margin-right: 0.5rem; margin-bottom: 0.5rem; }
 .skill-tag:hover { border-color: var(--glow-amber); color: var(--glow-amber); box-shadow: 0 0 10px rgba(245,166,35,0.2); }
 .contact-form { display: flex; flex-direction: column; gap: 1rem; width: 100%; }
-.form-input { width: 100%; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--text-primary); font-family: 'Inter', sans-serif; transition: all 0.3s; }
+.form-input { width: 100%; padding: 1rem; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 12px; color: var(--text-primary); font-family: 'Inter', sans-serif; transition: all 0.3s; }
 .form-input:focus { outline: none; border-color: var(--glow-cyan); box-shadow: 0 0 15px rgba(0,240,255,0.2); }
 .form-input::placeholder { color: var(--text-secondary); }
 textarea.form-input { min-height: 150px; resize: vertical; }
@@ -872,8 +927,8 @@ textarea.form-input { min-height: 150px; resize: vertical; }
   margin-top: 1rem;
 }
 .cert-item {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 16px;
   padding: 1rem;
   transition: all 0.3s ease;
@@ -1045,9 +1100,10 @@ textarea.form-input { min-height: 150px; resize: vertical; }
   width: 100%;
   overflow-x: auto;
   padding: 1rem;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--chart-bg);
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  transition: background 0.3s;
 }
 
 .github-chart-container::-webkit-scrollbar {
@@ -1065,13 +1121,12 @@ textarea.form-input { min-height: 150px; resize: vertical; }
   min-width: 600px;
   width: 100%;
   height: auto;
-  /* Invert white squares to dark grey, hue-rotate 180deg keeps the green */
-  filter: invert(1) hue-rotate(180deg) brightness(1.2) drop-shadow(0 0 4px rgba(0, 255, 102, 0.3));
+  filter: var(--chart-filter);
   transition: filter 0.3s ease;
 }
 
 .gh-chart-img:hover {
-  filter: invert(1) hue-rotate(180deg) brightness(1.5) drop-shadow(0 0 8px rgba(0, 255, 102, 0.6));
+  filter: var(--chart-filter-hover);
 }
 
 @media (max-width: 1024px) {
@@ -1180,7 +1235,7 @@ textarea.form-input { min-height: 150px; resize: vertical; }
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: rgba(10, 10, 15, 0.8);
+  background: var(--scroll-btn-bg);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 255, 102, 0.3);
   color: var(--glow-green);
@@ -1205,7 +1260,7 @@ textarea.form-input { min-height: 150px; resize: vertical; }
 
 .scroll-top-btn:hover {
   background: var(--glow-green);
-  color: #050505;
+  color: var(--btn-text);
   box-shadow: 0 0 25px rgba(0, 255, 102, 0.4);
   transform: translateY(-5px);
 }

@@ -109,11 +109,11 @@
         <div class="col-span-4 bento-card" data-tilt data-tilt-max="2"
             style="padding: 0; position: relative; overflow: hidden; display: flex; align-items: flex-end; min-height: 250px;">
             <video autoplay loop muted playsinline
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; mix-blend-mode: luminosity;">
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: var(--location-opacity); mix-blend-mode: var(--location-blend); transition: opacity 0.3s, mix-blend-mode 0.3s;">
                 <source src="images/earth-zoom.mp4" type="video/mp4">
             </video>
             <div
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(5,5,8,1) 0%, rgba(5,5,8,0) 100%); z-index: 1;">
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--location-gradient); z-index: 1; transition: background 0.3s;">
             </div>
             <div style="position: relative; z-index: 2; padding: 1.5rem; width: 100%;">
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
@@ -130,8 +130,8 @@
 
         <!-- 3. Code Window (Span 4) -->
         <div class="col-span-4 bento-card" data-tilt data-tilt-max="3" data-tilt-speed="400"
-            style="padding: 0; background: rgba(10, 10, 12, 0.8);">
-            <div class="code-window" style="border: none; box-shadow: none; height: 100%;">
+            style="padding: 0; overflow: hidden; background: transparent; border: none;">
+            <div class="code-window" style="border: 1px solid var(--border-color); box-shadow: var(--code-shadow); height: 100%;">
                 <div class="window-header">
                     <div class="dot red"></div>
                     <div class="dot yellow"></div>
@@ -404,15 +404,16 @@
                     display: flex;
                     flex-direction: column;
                     flex-grow: 1;
-                    background: linear-gradient(180deg, rgba(20, 15, 30, 0) 0%, rgba(20, 15, 30, 0.8) 100%);
+                    background: var(--project-gradient);
                     z-index: 2;
+                    transition: background 0.3s;
                 }
 
                 .cert-issuer-badge {
                     font-size: 0.75rem;
                     text-transform: uppercase;
                     letter-spacing: 0.15em;
-                    color: var(--text-primary);
+                    color: #ffffff;
                     background: linear-gradient(135deg, #a855f7, #ec4899);
                     padding: 5px 12px;
                     border-radius: 8px;
@@ -523,7 +524,7 @@
                         </div>
                         <div class="cert-details">
                             <span class="cert-issuer-badge"
-                                style="background: linear-gradient(135deg, #306998, #FFD43B); color: #000;">University
+                                style="background: linear-gradient(135deg, #306998, #FFD43B);">University
                                 of
                                 Moratuwa</span>
                             <h4 class="cert-title-v2">Python for Beginners</h4>
@@ -633,7 +634,7 @@
                         </div>
                         <div class="cert-details">
                             <span class="cert-issuer-badge"
-                                style="background: linear-gradient(135deg, #306998, #FFD43B); color: #000;">UoM</span>
+                                style="background: linear-gradient(135deg, #306998, #FFD43B);">UoM</span>
                             <h4 class="cert-title-v2">Python for Beginners</h4>
                             <div class="cert-footer-v2">
                                 <span>Issued: 2024</span>
@@ -728,6 +729,7 @@
                     background: #050505;
                     position: relative;
                     overflow: hidden;
+                    transform: translateZ(0); /* Force strict border-radius clipping for child transforms */
                 }
 
                 .project-img-sym img {
@@ -739,7 +741,7 @@
                 }
 
                 .project-card-sym:hover .project-img-sym img {
-                    transform: scale(1.08);
+                    transform: scale(1.1);
                     opacity: 1;
                 }
 
@@ -765,7 +767,8 @@
                     display: flex;
                     flex-direction: column;
                     flex-grow: 1;
-                    background: linear-gradient(180deg, rgba(10, 10, 15, 0) 0%, rgba(10, 10, 15, 0.8) 100%);
+                    background: var(--project-gradient);
+                    transition: background 0.3s;
                 }
 
                 .project-title-sym {
@@ -814,7 +817,7 @@
                     <div class="project-img-sym">
                         <span class="floating-badge"><i class="fas fa-star" style="margin-right: 5px;"></i>
                             Featured</span>
-                        <img src="images/verity.png" alt="Verity Systems"
+                        <img src="images/verity_monitor.png" alt="Verity Systems"
                             onerror="this.src='https://placehold.co/800x500?text=VERITY+Project'">
                     </div>
                     <div class="project-info-sym">
@@ -834,8 +837,8 @@
                 <div class="project-card-sym" data-tilt data-tilt-max="2" data-tilt-speed="400">
                     <div class="project-img-sym">
                         <span class="floating-badge">Management</span>
-                        <img src="images/student_ms.png" alt="School Management System"
-                            onerror="this.src='https://placehold.co/800x500?text=School+Management'">
+                        <img src="images/school_management_monitor.png" alt="School Management System"
+                            onerror="this.src='https://placehold.co/800x500?text=School+Project'">
                     </div>
                     <div class="project-info-sym">
                         <h3 class="project-title-sym serif-font">School Management</h3>
@@ -854,7 +857,7 @@
                 <div class="project-card-sym" data-tilt data-tilt-max="2" data-tilt-speed="400">
                     <div class="project-img-sym">
                         <span class="floating-badge">Travel</span>
-                        <img src="images/serandib_go_new.png" alt="Serendib GO"
+                        <img src="images/serendib_travel_laptop.png" alt="Serendib GO"
                             onerror="this.src='https://placehold.co/800x500?text=Tourism+Project'">
                     </div>
                     <div class="project-info-sym">
@@ -875,7 +878,7 @@
                     style="display: none;">
                     <div class="project-img-sym">
                         <span class="floating-badge">E-Commerce</span>
-                        <img src="images/grocery_fresh_v2.png" alt="Grocery System"
+                        <img src="images/grocery_ecommerce_laptop.png" alt="Grocery System"
                             onerror="this.src='https://placehold.co/800x500?text=Grocery+Project'">
                     </div>
                     <div class="project-info-sym">
@@ -896,8 +899,8 @@
                     style="display: none;">
                     <div class="project-img-sym">
                         <span class="floating-badge">Booking</span>
-                        <img src="images/airline_skywave.jpg" alt="Airline Booking"
-                            onerror="this.src='https://placehold.co/800x500?text=Airline+Project'">
+                        <img src="images/airline_laptop.png" alt="Airline Booking"
+                            onerror="this.src='https://placehold.co/800x500?text=Airline+Booking'">
                     </div>
                     <div class="project-info-sym">
                         <h3 class="project-title-sym serif-font">Airline Booking</h3>
@@ -916,8 +919,8 @@
                     style="display: none;">
                     <div class="project-img-sym">
                         <span class="floating-badge">System</span>
-                        <img src="images/inventory_garment.jpg" alt="Inventory"
-                            onerror="this.src='https://placehold.co/800x500?text=Inventory+Project'">
+                        <img src="images/garment_monitor.png" alt="Inventory"
+                            onerror="this.src='https://placehold.co/800x500?text=Inventory'">
                     </div>
                     <div class="project-info-sym">
                         <h3 class="project-title-sym serif-font">Inventory System</h3>
