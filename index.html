@@ -35,21 +35,38 @@
 
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container" style="justify-content: center;">
+        <div class="nav-container">
+            <button class="hamburger" id="hamburger-menu" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-links">
                 <li><a href="#skills">Experience</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#certifications">Certificates</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact" class="nav-btn">Let's Talk</a></li>
-                <li>
-                    <button id="theme-toggle" style="background: none; border: none; color: var(--text-primary); font-size: 1.2rem; cursor: pointer; padding: 0.5rem; margin-left: 1rem; transition: color 0.3s; display: flex; align-items: center;" aria-label="Toggle Theme">
-                        <i class="fas fa-sun"></i>
-                    </button>
-                </li>
             </ul>
+            <button id="theme-toggle"
+                style="background: none; border: none; color: var(--text-primary); font-size: 1.2rem; cursor: pointer; padding: 0.5rem; transition: color 0.3s; display: flex; align-items: center;"
+                aria-label="Toggle Theme">
+                <i class="fas fa-sun"></i>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <button class="hamburger" id="close-menu" aria-label="Close Menu" style="position: absolute; top: 2rem; right: 2rem; font-size: 2rem;">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-menu-links">
+            <li><a href="#skills" class="mobile-link">Experience</a></li>
+            <li><a href="#about" class="mobile-link">About</a></li>
+            <li><a href="#certifications" class="mobile-link">Certificates</a></li>
+            <li><a href="#projects" class="mobile-link">Projects</a></li>
+            <li><a href="#contact" class="mobile-link" style="color: var(--glow-amber);">Let's Talk</a></li>
+        </ul>
+    </div>
 
     <!-- Main Bento Dashboard -->
     <main class="container bento-dashboard">
@@ -63,6 +80,7 @@
                     <div class="profile-aura"></div>
                     <div class="premium-profile-card">
                         <img src="images/profilepicture.png" alt="Shehan Madushanka" width="200" height="260"
+                            style="object-position: 54% 5%;"
                             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'">
                     </div>
                 </div>
@@ -123,7 +141,8 @@
                     <span
                         style="color: var(--glow-green); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;">Location</span>
                 </div>
-                <h3 class="serif-font" style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 0.2rem;">Colombo, LK</h3>
+                <h3 class="serif-font" style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 0.2rem;">
+                    Colombo, LK</h3>
                 <p style="color: var(--text-secondary); font-size: 0.85rem;">Available for Remote Work</p>
             </div>
         </div>
@@ -131,7 +150,8 @@
         <!-- 3. Code Window (Span 4) -->
         <div class="col-span-4 bento-card" data-tilt data-tilt-max="3" data-tilt-speed="400"
             style="padding: 0; overflow: hidden; background: transparent; border: none;">
-            <div class="code-window" style="border: 1px solid var(--border-color); box-shadow: var(--code-shadow); height: 100%;">
+            <div class="code-window"
+                style="border: 1px solid var(--border-color); box-shadow: var(--code-shadow); height: 100%;">
                 <div class="window-header">
                     <div class="dot red"></div>
                     <div class="dot yellow"></div>
@@ -157,7 +177,7 @@
             <h2 class="serif-font" style="font-size: 1.5rem; margin-bottom: 1.5rem; text-transform: uppercase;">
                 Technical Arsenal</h2>
 
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+            <div class="responsive-grid-2">
                 <!-- Frontend -->
                 <div>
                     <h3 style="font-size: 1rem; color: var(--glow-cyan); margin-bottom: 0.8rem;"><i class="fab fa-react"
@@ -238,7 +258,8 @@
                             <i class="fas fa-graduation-cap"></i>
                         </div>
                         <div>
-                            <h3 style="font-size: 1.2rem; margin-bottom: 0.3rem; color: var(--text-primary);">BSc (Hons) in Information
+                            <h3 style="font-size: 1.2rem; margin-bottom: 0.3rem; color: var(--text-primary);">BSc (Hons)
+                                in Information
                                 Technology</h3>
                             <p
                                 style="color: var(--glow-cyan); font-weight: 500; font-size: 0.9rem; margin-bottom: 0.2rem; text-shadow: 0 0 5px rgba(0,240,255,0.3);">
@@ -377,7 +398,7 @@
                 .cert-img-wrapper {
                     width: 100%;
                     height: 220px;
-                    background: #050508;
+                    background: var(--cert-img-bg);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -469,8 +490,8 @@
                     <!-- Certificate 1: MongoDB -->
                     <a href="#" class="cert-glass-card" onclick="return false;">
                         <div class="cert-img-wrapper">
-                            <img src="images/MongoDB%20Node%20js%20Develo%5Ber%20path%20certificate.jpg"
-                                alt="MongoDB Node.js" onerror="this.src='https://placehold.co/400x300?text=MongoDB'">
+                            <img src="images/mongodb_certificate.png" alt="MongoDB Node.js"
+                                onerror="this.src='https://placehold.co/400x300?text=MongoDB'">
                         </div>
                         <div class="cert-details">
                             <span class="cert-issuer-badge">MongoDB</span>
@@ -579,8 +600,8 @@
                     <!-- Certificate 1: MongoDB -->
                     <a href="#" class="cert-glass-card" onclick="return false;" tabindex="-1">
                         <div class="cert-img-wrapper">
-                            <img src="images/MongoDB%20Node%20js%20Develo%5Ber%20path%20certificate.jpg"
-                                alt="MongoDB Node.js" onerror="this.src='https://placehold.co/400x300?text=MongoDB'">
+                            <img src="images/mongodb_certificate.png" alt="MongoDB Node.js"
+                                onerror="this.src='https://placehold.co/400x300?text=MongoDB'">
                         </div>
                         <div class="cert-details">
                             <span class="cert-issuer-badge">MongoDB</span>
@@ -729,7 +750,8 @@
                     background: #050505;
                     position: relative;
                     overflow: hidden;
-                    transform: translateZ(0); /* Force strict border-radius clipping for child transforms */
+                    transform: translateZ(0);
+                    /* Force strict border-radius clipping for child transforms */
                 }
 
                 .project-img-sym img {
@@ -1180,6 +1202,33 @@
         onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- Mobile Menu JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger-menu');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function openMobileMenu() {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (hamburger) hamburger.addEventListener('click', openMobileMenu);
+            if (closeMenu) closeMenu.addEventListener('click', closeMobileMenu);
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+        });
+    </script>
 </body>
 
 </html>

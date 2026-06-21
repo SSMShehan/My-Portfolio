@@ -42,6 +42,7 @@
   --mockup-bg: rgba(10, 10, 15, 0.8);
   --mockup-skeleton: rgba(255, 255, 255, 0.1);
   --mockup-skeleton-light: rgba(255, 255, 255, 0.05);
+  --cert-img-bg: #050508;
   
   /* Borders & Shadows */
   --border-color: rgba(255, 255, 255, 0.08);
@@ -100,6 +101,7 @@
   --mockup-bg: rgba(255, 255, 255, 0.6);
   --mockup-skeleton: rgba(0, 0, 0, 0.08);
   --mockup-skeleton-light: rgba(0, 0, 0, 0.04);
+  --cert-img-bg: #ffffff;
 
   /* Borders & Shadows */
   --border-color: rgba(0, 0, 0, 0.08);
@@ -276,12 +278,12 @@ h1, h2, h3, .serif-font {
 
 .nav-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1.5rem;
   align-items: center;
   width: 100%;
   position: relative;
-  z-index: 1;
+  z-index: 1001;
 }
 
 .nav-links {
@@ -290,6 +292,75 @@ h1, h2, h3, .serif-font {
   list-style: none;
   align-items: center;
   margin: 0 auto; /* Center links in the pill */
+}
+
+/* Hamburger Menu Icon */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.3s;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+[data-theme="light"] .mobile-menu-overlay {
+  background: rgba(248, 250, 252, 0.95);
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+  transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mobile-menu-overlay.active .mobile-menu-links {
+  transform: translateY(0);
+}
+
+.mobile-menu-links a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+.mobile-menu-links a:hover {
+  color: var(--glow-cyan);
 }
 
 /* Magnetic Hover Pills */
@@ -426,6 +497,24 @@ h1, h2, h3, .serif-font {
 .col-span-4 { grid-column: span 4; }
 .col-span-3 { grid-column: span 3; }
 
+/* Responsive Grid Utilities */
+.responsive-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.responsive-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.mockup-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 1.5rem;
+  min-height: 400px;
+}
+
 /* 🔮 Frosted Glass Bento Card Style */
 .bento-card {
   background: var(--card-bg);
@@ -533,9 +622,10 @@ h1, h2, h3, .serif-font {
   box-shadow: 0 0 20px rgba(245, 166, 35, 0.5);
 }
 .btn-primary:hover {
+  background: #fff;
+  color: #000 !important;
   box-shadow: 0 0 30px rgba(245, 166, 35, 0.8);
   transform: translateY(-2px);
-  color: var(--btn-text) !important;
 }
 
 .btn-outline {
@@ -884,11 +974,26 @@ h1, h2, h3, .serif-font {
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .col-span-8, .col-span-4, .col-span-6 {
+  .col-span-8, .col-span-6 {
     grid-column: span 12;
   }
-  .skills-container, .project-gallery-grid {
+  .col-span-4, .col-span-3 {
+    grid-column: span 6;
+  }
+  .skills-container, .project-gallery-grid, .responsive-grid-3 {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .github-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .gh-profile-panel {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-right: 0;
+    padding-bottom: 2rem;
+  }
+  .project-card-sym {
+    grid-column: span 6;
   }
 }
 
@@ -896,17 +1001,64 @@ h1, h2, h3, .serif-font {
   .nav-links {
     display: none;
   }
+  .hamburger {
+    display: block;
+  }
+  .bento-dashboard {
+    padding-top: 100px;
+    padding-bottom: 2rem;
+  }
+  .col-span-8, .col-span-6, .col-span-4, .col-span-3 {
+    grid-column: span 12;
+  }
   .hero-wrapper {
     flex-direction: column;
     text-align: center;
+    gap: 1.5rem;
   }
   .hero-content {
     align-items: center;
     display: flex;
     flex-direction: column;
   }
-  .project-gallery-grid {
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+  .project-gallery-grid, .responsive-grid-2, .responsive-grid-3 {
     grid-template-columns: 1fr;
+  }
+  .mockup-layout {
+    grid-template-columns: 1fr;
+  }
+  .project-card-sym {
+    grid-column: span 12;
+  }
+  .gh-metrics {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  .cert-marquee-group {
+    gap: 1rem;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  .bento-card {
+    padding: 1.5rem;
+  }
+  .navbar {
+    width: 95%;
+    padding: 0.6rem 1rem;
+  }
+  .profile-img-wrap {
+    width: 160px;
+    min-width: 160px;
+    height: 208px;
   }
 }
 
