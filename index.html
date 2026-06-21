@@ -6,567 +6,1177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shehan | Full Stack Developer</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <!-- Google Fonts -->
+    <!-- Prevent browser scroll restoration causing layout shift on refresh -->
+    <script>history.scrollRestoration = 'auto';</script>
+    <!-- Google Fonts - preconnect for speed, display=swap to prevent layout shift -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function () {
-            // REPLACE 'YOUR_PUBLIC_KEY' WITH YOUR ACTUAL PUBLIC KEY FROM EMAILJS DASHBOARD
             emailjs.init("UzaXqNn9PC-amO__A");
         })();
     </script>
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=4">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <!-- Background Effects -->
-    <canvas id="particle-canvas"></canvas>
-    <div class="perspective-grid"></div>
-    <div class="bg-gradient-orb orb-1"></div>
-    <div class="bg-gradient-orb orb-2"></div>
+    <!-- 🌌 Ambient Neon Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
 
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Shehan<span class="accent-text">.</span>Madushanka</a>
+        <div class="nav-container" style="justify-content: center;">
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Experience</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#projects">Work</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#certifications">Certificates</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact" class="nav-btn">Let's Talk</a></li>
+                <li>
+                    <button id="theme-toggle" style="background: none; border: none; color: var(--text-primary); font-size: 1.2rem; cursor: pointer; padding: 0.5rem; margin-left: 1rem; transition: color 0.3s; display: flex; align-items: center;" aria-label="Toggle Theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
             </ul>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <span class="accent-text"
-                    style="margin-bottom: 1rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; display: block;">Portfolio
-                </span>
-                <h1>Crafting Digital <br><span class="accent-text typing-text"></span><span class="cursor">|</span></h1>
-                <p class="role">IT Undergraduate & Full Stack Developer</p>
-                <p class="description">
-                    Driven third-year IT undergraduate focused on full-stack development, creating clean,
-                    high-performance
-                    applications with Java, Python, and the MERN stack.
-                </p>
-                <div class="cta-group">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="images/Shehan CV Resume.pdf" target="_blank" class="btn btn-glow"><i
-                            class="fas fa-download" style="margin-right: 8px;"></i>Download Resume</a>
-                    <a href="#contact" class="btn btn-outline">Contact Me</a>
-                </div>
-            </div>
-            <div class="hero-image-wrapper">
-                <!-- Orbital Rings -->
-                <div class="orbit-ring orbit-1"></div>
-                <div class="orbit-ring orbit-2"></div>
-                <div class="orbit-ring orbit-3">
-                    <div class="orbit-planet planet-1"><i class="fab fa-react"></i></div>
-                    <div class="orbit-planet planet-2"><i class="fab fa-node-js"></i></div>
-                    <div class="orbit-planet planet-3"><i class="fab fa-python"></i></div>
-                    <div class="orbit-planet planet-4"><i class="fab fa-java"></i></div>
+    <!-- Main Bento Dashboard -->
+    <main class="container bento-dashboard">
+
+        <div class="col-span-8 bento-card" data-tilt data-tilt-max="2" data-tilt-speed="400" data-tilt-glare="true"
+            data-tilt-max-glare="0.05" style="display: flex; align-items: center; min-height: 320px;">
+
+            <div class="hero-wrapper" style="width: 100%; gap: 2.5rem; align-items: center;">
+                <!-- Premium Profile Image -->
+                <div class="profile-img-wrap" style="flex-shrink: 0; position: relative;">
+                    <div class="profile-aura"></div>
+                    <div class="premium-profile-card">
+                        <img src="images/profilepicture.png" alt="Shehan Madushanka" width="200" height="260"
+                            onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'">
+                    </div>
                 </div>
 
-                <!-- Main Image -->
-                <div class="hero-image-container tilt-effect">
-                    <img src="images/profilepicture.png" alt="Shehan Madushanka" class="hero-profile-img">
-                </div>
-            </div>
-        </div>
-    </section>
+                <!-- Content -->
+                <div class="hero-content"
+                    style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <span class="accent-text"
+                        style="color: var(--glow-amber); font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; display: inline-block; font-size: 0.85rem;">
+                        Hi, I'm Shehan Madushanka <span style="font-size: 1.1rem;">👋</span>
+                    </span>
 
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <h2 class="section-title">About <span class="accent-text">Me</span></h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I’m a third-year IT undergraduate at SLIIT with a strong passion for building impactful,
-                        real-world software solutions. With a solid foundation in full-stack development, I enjoy
-                        transforming ideas into efficient, scalable applications.
+                    <h1 class="hero-title serif-font"
+                        style="font-size: clamp(2.2rem, 3.5vw, 3.2rem); color: var(--text-primary); line-height: 1.15; margin-bottom: 1rem;">
+                        <span style="display: block;">Crafting Digital</span>
+                        <span class="typing-line"><span style="color: var(--glow-cyan);"
+                                class="typing-text"></span><span class="cursor"
+                                style="color: var(--glow-cyan);">|</span></span>
+                    </h1>
+
+                    <h2
+                        style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 1.5rem; font-weight: 400; font-family: 'Inter', sans-serif;">
+                        IT Undergraduate & Full Stack Developer
+                    </h2>
+
+                    <p class="hero-desc"
+                        style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; max-width: 90%;">
+                        Driven third-year IT undergraduate focused on creating clean, high-performance applications.
+
                     </p>
-                    <p>
-                        I work with Java, Python, and the MERN stack, and I thrive in collaborative environments where
-                        problem-solving and innovation come together. Driven by continuous learning, I’m currently
-                        gaining hands-on industry experience through professional internships, sharpening both my
-                        technical and communication skills.
-                    </p>
-                </div>
-                <!-- Feature Card Column -->
-                <div class="about-feat-card">
-                    <div class="code-window">
-                        <div class="window-header">
-                            <div class="dot red"></div>
-                            <div class="dot yellow"></div>
-                            <div class="dot green"></div>
-                        </div>
-                        <div class="code-content">
-                            <div class="line"><span class="keyword">class</span> <span
-                                    class="class-name">Developer</span> {</div>
-                            <div class="line indent"> <span class="keyword">constructor</span>() {</div>
-                            <div class="line double-indent"> <span class="this">this</span>.<span
-                                    class="prop">name</span> = <span class="string">'Shehan'</span>;</div>
-                            <div class="line double-indent"> <span class="this">this</span>.<span
-                                    class="prop">role</span> = <span class="string">'Full Stack'</span>;</div>
-                            <div class="line double-indent"> <span class="this">this</span>.<span
-                                    class="prop">hobbies</span> = [<span class="string">'Code'</span>, <span
-                                    class="string">'Coffee'</span>];</div>
-                            <div class="line indent"> }</div>
-                            <div class="line">}</div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Stats Grid (Bottom Left) -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>3+</h3>
-                        <p>Years Learning</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>5+</h3>
-                        <p>Projects Built</p>
-                    </div>
-                </div>
-
-                <!-- Location Video Card (Bottom Right) -->
-                <div class="location-video-card">
-                    <video class="inline-location-video" autoplay loop muted playsinline>
-                        <source src="images/earth-zoom.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-card-overlay">
-                        <div class="live-indicator"><span class="live-dot"></span> Location</div>
-                        <span class="location-label"><i class="fas fa-satellite"></i> Colombo, Sri Lanka</span>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="images/Shehan CV Resume.pdf" target="_blank" class="btn btn-outline">
+                            <i class="fas fa-download" style="margin-right: 8px;"></i>Resume
+                        </a>
+                        <a href="#contact" class="btn btn-outline">Let's Talk</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section skills">
-        <div class="container">
-            <h2 class="section-title">My <span class="accent-text">Stack</span></h2>
-            <div class="skills-grid">
+        <!-- 2. Location Video Card (Span 4) -->
+        <div class="col-span-4 bento-card" data-tilt data-tilt-max="2"
+            style="padding: 0; position: relative; overflow: hidden; display: flex; align-items: flex-end; min-height: 250px;">
+            <video autoplay loop muted playsinline
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; mix-blend-mode: luminosity;">
+                <source src="images/earth-zoom.mp4" type="video/mp4">
+            </video>
+            <div
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(5,5,8,1) 0%, rgba(5,5,8,0) 100%); z-index: 1;">
+            </div>
+            <div style="position: relative; z-index: 2; padding: 1.5rem; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
+                    <div
+                        style="width: 8px; height: 8px; background: var(--glow-green); border-radius: 50%; box-shadow: 0 0 10px var(--glow-green);">
+                    </div>
+                    <span
+                        style="color: var(--glow-green); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;">Location</span>
+                </div>
+                <h3 class="serif-font" style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 0.2rem;">Colombo, LK</h3>
+                <p style="color: var(--text-secondary); font-size: 0.85rem;">Available for Remote Work</p>
+            </div>
+        </div>
+
+        <!-- 3. Code Window (Span 4) -->
+        <div class="col-span-4 bento-card" data-tilt data-tilt-max="3" data-tilt-speed="400"
+            style="padding: 0; background: rgba(10, 10, 12, 0.8);">
+            <div class="code-window" style="border: none; box-shadow: none; height: 100%;">
+                <div class="window-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="code-content">
+                    <div><span class="keyword">class</span> <span class="class-name">Developer</span> {</div>
+                    <div class="indent"><span class="keyword">constructor</span>() {</div>
+                    <div class="double-indent"><span class="this">this</span>.<span class="prop">name</span> = <span
+                            class="string">'Shehan'</span>;</div>
+                    <div class="double-indent"><span class="this">this</span>.<span class="prop">role</span> = <span
+                            class="string">'Full Stack'</span>;</div>
+                    <div class="double-indent"><span class="this">this</span>.<span class="prop">hobbies</span> = [<span
+                            class="string">'Code'</span>, <span class="string">'Coffee'</span>];</div>
+                    <div class="indent">}</div>
+                    <div>}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Comprehensive Skills Card (Span 8) -->
+        <div class="col-span-8 bento-card" id="skills" data-tilt data-tilt-max="1" data-tilt-speed="400">
+            <h2 class="serif-font" style="font-size: 1.5rem; margin-bottom: 1.5rem; text-transform: uppercase;">
+                Technical Arsenal</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
                 <!-- Frontend -->
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fab fa-react"></i></div>
-                    <h3>Frontend Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">React.js</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">UI/UX</span>
-                        <span class="skill-tag">Playwright</span>
+                <div>
+                    <h3 style="font-size: 1rem; color: var(--glow-cyan); margin-bottom: 0.8rem;"><i class="fab fa-react"
+                            style="margin-right: 0.5rem;"></i>Frontend Development</h3>
+                    <div>
+                        <span class="skill-tag">React.js</span><span class="skill-tag">JavaScript</span><span
+                            class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">Figma</span><span class="skill-tag">UI/UX</span><span
+                            class="skill-tag">Playwright</span>
                     </div>
                 </div>
 
                 <!-- Backend -->
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fab fa-node-js"></i></div>
-                    <h3>Backend Systems</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Express.js</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">PHP</span>
-                        <span class="skill-tag">REST APIs</span>
+                <div>
+                    <h3 style="font-size: 1rem; color: var(--glow-green); margin-bottom: 0.8rem;"><i
+                            class="fab fa-node-js" style="margin-right: 0.5rem;"></i>Backend Systems</h3>
+                    <div>
+                        <span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span><span
+                            class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Java</span><span class="skill-tag">Python</span><span
+                            class="skill-tag">PHP</span><span class="skill-tag">REST APIs</span>
                     </div>
                 </div>
 
                 <!-- Database & Cloud -->
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-database"></i></div>
-                    <h3>Data & Cloud</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Google Cloud</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
-
+                <div>
+                    <h3 style="font-size: 1rem; color: var(--glow-amber); margin-bottom: 0.8rem;"><i
+                            class="fas fa-database" style="margin-right: 0.5rem;"></i>Data & Cloud</h3>
+                    <div>
+                        <span class="skill-tag">MongoDB</span><span class="skill-tag">MySQL</span><span
+                            class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Google Cloud</span><span class="skill-tag">Git</span><span
+                            class="skill-tag">GitHub</span>
                     </div>
                 </div>
 
                 <!-- Soft Skills -->
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-users"></i></div>
-                    <h3>Soft Skills</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Leadership</span>
-                        <span class="skill-tag">Team Work</span>
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">Analytical</span>
+                <div>
+                    <h3 style="font-size: 1rem; color: var(--glow-purple); margin-bottom: 0.8rem;"><i
+                            class="fas fa-users" style="margin-right: 0.5rem;"></i>Soft Skills</h3>
+                    <div>
+                        <span class="skill-tag">Leadership</span><span class="skill-tag">Team Work</span>
+                        <span class="skill-tag">Problem Solving</span><span class="skill-tag">Analytical</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Education & Certifications Section -->
-    <section id="education" class="section education">
-        <div class="container">
-            <h2 class="section-title">Education & <span class="accent-text">Certifications</span></h2>
-
-            <!-- University Section -->
-            <div class="education-container">
-                <div class="education-card">
-                    <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <div class="edu-content">
-                        <h3>BSc (Hons) in Information Technology</h3>
-                        <span class="edu-institution">Sri Lanka Institute of Information Technology (SLIIT)</span>
-                        <span class="edu-year">2023 - Present</span>
-                        <p class="edu-desc">
-                            Currently pursuing my degree, specializing in Information Technology.
-                            Gained strong foundations in OOP, Data Structures, Algorithms, and Full Stack Development.
-                        </p>
+        <!-- 5. About Me & Education (Span 12) -->
+        <div class="col-span-12 bento-card" data-tilt data-tilt-max="1" data-tilt-speed="400">
+            <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
+                <!-- About Me -->
+                <div style="flex: 1; min-width: 300px;" id="about">
+                    <h2 class="serif-font" style="font-size: 1.5rem; margin-bottom: 1.5rem; text-transform: uppercase;">
+                        About <span style="color: var(--glow-amber);">Me</span></h2>
+                    <div
+                        style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; display: flex; flex-direction: column; gap: 1rem; text-align: justify;">
+                        <p>I'm a third-year IT undergraduate at SLIIT with a strong passion for architecting impactful,
+                            real-world software solutions. With a robust foundation in full-stack development, I
+                            specialize in transforming complex problems into efficient, scalable, and user-centric
+                            applications.</p>
+                        <p>My technical expertise spans across Java, Spring Boot, Python, and the MERN stack, allowing
+                            me to build everything from comprehensive management systems to dynamic e-commerce
+                            platforms. While my primary focus is on robust engineering, I maintain a practical approach
+                            to building clean, functional user interfaces. Driven by continuous learning, I thrive in
+                            collaborative environments where innovation and problem-solving intersect. I am currently
+                            gaining hands-on industry experience through professional internships, continuously
+                            sharpening my technical arsenal to deliver highly effective digital experiences.</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Certifications Grid -->
-            <h3 class="subsection-title">Certifications</h3>
-            <div class="cert-grid">
-
-                <!-- Certificate 6: MongoDB Node.js Developer Path -->
-                <a href="#" class="cert-card" onclick="return false;">
-                    <div class="cert-img">
-                        <img src="images/MongoDB%20Node%20js%20Develo%5Ber%20path%20certificate.jpg"
-                            alt="MongoDB Node.js Developer Path Certificate">
+                <!-- Education -->
+                <div style="flex: 1; min-width: 300px;" id="education">
+                    <h2 class="serif-font" style="font-size: 1.5rem; margin-bottom: 1.5rem; text-transform: uppercase;">
+                        Education</h2>
+                    <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                        <div
+                            style="width: 80px; height: 80px; background: rgba(245,166,35,0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--glow-amber); box-shadow: inset 0 0 15px rgba(245,166,35,0.2); flex-shrink: 0;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 0.3rem; color: var(--text-primary);">BSc (Hons) in Information
+                                Technology</h3>
+                            <p
+                                style="color: var(--glow-cyan); font-weight: 500; font-size: 0.9rem; margin-bottom: 0.2rem; text-shadow: 0 0 5px rgba(0,240,255,0.3);">
+                                Sri Lanka Institute of Information Technology (SLIIT)</p>
+                            <p
+                                style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                                2023 - Present</p>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5;">Currently
+                                pursuing my degree, specializing in Information Technology. Gained strong foundations in
+                                OOP, Data Structures, Algorithms, and Full Stack Development.</p>
+                        </div>
                     </div>
-                    <div class="cert-content">
-                        <h4>MongoDB Node.js Developer Path</h4>
-                        <span class="cert-issuer">MongoDB</span>
-                        <span class="cert-date">Issued: 2026</span>
-                    </div>
-                </a>
-
-
-                <!-- Certificate 1: Google Cloud -->
-                <a href="#" class="cert-card" onclick="return false;">
-                    <div class="cert-img">
-                        <img src="images/Coursera Google Cloud Certificate.png" alt="Google Cloud Certificate">
-                    </div>
-                    <div class="cert-content">
-                        <h4>Google Cloud Fundamentals</h4>
-                        <span class="cert-issuer">Coursera</span>
-                        <span class="cert-date">Issued: 2025</span>
-                    </div>
-                </a>
-
-                <!-- Certificate 2: Amazon Q -->
-                <a href="#" class="cert-card" onclick="return false;">
-                    <div class="cert-img">
-                        <img src="images/Amazon Q Developer Certificate.png" alt="Amazon Q Developer Certificate">
-                    </div>
-                    <div class="cert-content">
-                        <h4>Amazon Q Developer</h4>
-                        <span class="cert-issuer">Amazon</span>
-                        <span class="cert-date">Issued: 2025</span>
-                    </div>
-                </a>
-
-                <!-- Certificate 3: Python -->
-                <a href="#" class="cert-card" onclick="return false;">
-                    <div class="cert-img">
-                        <img src="images/Python_for_Beginners_E-Certificate_page-0001.jpg"
-                            alt="Python for Beginners Certificate">
-                    </div>
-                    <div class="cert-content">
-                        <h4>Python for Beginners</h4>
-                        <span class="cert-issuer">University of Moratuwa</span>
-                        <span class="cert-date">Issued: 2024</span>
-                    </div>
-                </a>
-
-                <!-- Certificate 4: Cyber -->
-                <a href="https://coursera.org/share/ab4894085a66185591eec2253e926a78" target="_blank" class="cert-card">
-                    <div class="cert-img">
-                        <img src="images/Coursera cyber security.png" alt="Coursera Cybersecurity Certificate">
-                    </div>
-                    <div class="cert-content">
-                        <h4>IBM Cybersecurity</h4>
-                        <span class="cert-issuer">Coursera</span>
-                        <span class="cert-date">Issued: 2024</span>
-                    </div>
-                </a>
-
-                <!-- Certificate 5: Project Management -->
-                <a href="https://open.uom.lk/lms/mod/customcert/verify_certificate.php" target="_blank"
-                    class="cert-card">
-                    <div class="cert-img">
-                        <img src="images/Foundations_of_Project_Management_E-Certificate_2_page-0001.jpg"
-                            alt="Foundations of Project Management">
-                    </div>
-                    <div class="cert-content">
-                        <h4>Foundations of Project Management</h4>
-                        <span class="cert-issuer">University of Moratuwa</span>
-                        <span class="cert-date">Issued: 2024</span>
-                    </div>
-                </a>
-
-
-            </div>
-
-            <!-- Show More Button -->
-            <div class="show-more-container" style="text-align: center; margin-top: 2rem; display: none;">
-                <button id="show-more-certs-btn" class="btn btn-outline" style="min-width: 150px;">Show More</button>
+                </div>
             </div>
         </div>
-    </section>
 
+        <!-- 5.2 GitHub Open Source Activity (Span 12) -->
+        <div class="col-span-12 bento-card github-stats-card" data-tilt data-tilt-max="1" data-tilt-speed="400"
+            id="github-activity">
+            <h2 class="serif-font" style="font-size: 1.5rem; margin-bottom: 1.5rem; text-transform: uppercase;">
+                Open Source <span style="color: var(--glow-green);">Activity</span></h2>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
-        <div class="container">
-            <h2 class="section-title">Selected <span class="accent-text">Work</span></h2>
-            <div class="projects-grid">
-                <!-- Project 0 (VERITY) -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/verity.png" alt="VERITY Smart Campus Management System"
-                            onerror="this.onerror=null;this.src='https://placehold.co/800x500?text=VERITY+Project';">
-                    </div>
-                    <div class="project-info">
-                        <h3>Smart Campus Management System</h3>
-                        <p>
-                            A full-stack smart campus platform built to streamline academic project coordination,
-                            team collaboration, lecturer oversight, and manager administration. It includes role-based
-                            dashboards, project and task tracking, weekly reporting, real-time notifications, GitHub
-                            integration, AI-driven insights, and submission handling with plagiarism analysis.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">TypeScript</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">Express</span>
-                            <span class="skill-tag">Prisma</span>
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">Redis</span>
-                            <span class="skill-tag">Socket.IO</span>
+            <div class="github-stats-grid">
+                <!-- Left: Profile & Stats -->
+                <div class="gh-profile-panel">
+                    <div class="gh-user-info">
+                        <div class="gh-avatar-wrap">
+                            <img id="gh-avatar" src="https://github.com/SSMShehan.png" alt="GitHub Avatar" width="80"
+                                height="80">
                         </div>
-                        <div class="project-actions">
-                            <a href="project-details.html" class="btn btn-outline project-details-btn">View Details</a>
+                        <div class="gh-user-details">
+                            <h3 id="gh-name" class="serif-font">Loading...</h3>
+                            <a href="https://github.com/SSMShehan" target="_blank" id="gh-username"
+                                class="gh-link">@SSMShehan</a>
+                        </div>
+                    </div>
+                    <div class="gh-bio" id="gh-bio">Fetching GitHub details...</div>
+                    <div class="gh-metrics">
+                        <div class="stat-box">
+                            <div class="stat-value glow-text-cyan" id="gh-repos">-</div>
+                            <div class="stat-label">Public Repos</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value glow-text-amber" id="gh-commits">-</div>
+                            <div class="stat-label">Total Commits</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value glow-text-green" id="gh-followers">-</div>
+                            <div class="stat-label">Followers</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project New (School Management System) -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <a href="school-ms-details.html">
-                            <img src="images/student_ms.png" alt="School Management System"
-                                onerror="this.onerror=null;this.src='https://placehold.co/800x500?text=School+Management+System';">
-                        </a>
+                <!-- Right: Contribution Graph -->
+                <div class="gh-graph-panel">
+                    <div class="gh-graph-header">
+                        <h3 style="font-size: 1rem; color: var(--text-primary); display: flex; align-items: center;"><i
+                                class="fab fa-github" style="margin-right: 8px;"></i> Contribution Graph</h3>
+                        <span
+                            style="font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center;"><span
+                                class="live-dot"
+                                style="display:inline-block; margin-right: 6px; width: 6px; height: 6px; background: var(--glow-green);"></span>Live
+                            Data</span>
                     </div>
-                    <div class="project-info">
-                        <h3><a href="school-ms-details.html" style="text-decoration: none; color: inherit;">School
-                                Management System</a></h3>
-                        <p>
-                            A comprehensive full-stack School Management System. Features student/staff management,
-                            attendance tracking, finance management, and an integrated AI assistant.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="skill-tag">Recall 19</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">FastAPI</span>
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">Tailwind CSS 4</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="school-ms-details.html" class="btn btn-outline project-details-btn">View
-                                Details</a>
-                        </div>
+                    <div class="github-chart-container">
+                        <img src="https://ghchart.rshah.org/00ff66/SSMShehan" alt="SSMShehan's GitHub chart"
+                            class="gh-chart-img" />
                     </div>
                 </div>
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Sri Lanka Serandib GO (User Uploaded) -->
-                        <a href="serendib-go-details.html">
-                            <img src="images/serandib_go_new.png" alt="Serendib GO Travel Management Platform"
-                                onerror="this.onerror=null;this.src='https://placehold.co/800x500?text=Tourism+Project';">
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3><a href="serendib-go-details.html" style="text-decoration: none; color: inherit;">Serendib
-                                GO Travel Platform</a></h3>
-                        <p>
-                            A comprehensive full-stack travel management platform tailored for the Sri Lankan tourism
-                            ecosystem.
-                            Features a geospatial vehicle marketplace, integrated Stripe bookings, and multi-role
-                            dashboards for tourists, guides, and owners.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">MongoDB</span>
-                            <span class="skill-tag">Tailwind</span>
-                            <span class="skill-tag">Stripe API</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="serendib-go-details.html" class="btn btn-outline project-details-btn">View
-                                Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Modern Grocery Store / FreshGrocer (User Uploaded) -->
-                        <a href="grocery-details.html">
-                            <img src="images/grocery_fresh_v2.png" alt="Grocery Ordering System"
-                                onerror="this.onerror=null;this.src='https://placehold.co/800x500?text=Grocery+Project';">
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3><a href="grocery-details.html" style="text-decoration: none; color: inherit;">Online Grocery
-                                System</a></h3>
-                        <p>
-                            A web application using Java and MVC architecture for browsing products, managing carts, and
-                            seamless order processing.
-                            Implemented robust inventory checks and system reliability logic.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">MVC</span>
-                            <span class="skill-tag">JavaScript</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="grocery-details.html" class="btn btn-outline project-details-btn">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Airplane Window / Sky Wave (User Uploaded) -->
-                        <img src="images/airline_skywave.jpg" alt="Airline Ticket Booking"
-                            onerror="this.onerror=null;this.src='https://placehold.co/800x500?text=Airline+Project';">
-                    </div>
-                    <div class="project-info">
-                        <h3>Airline Ticket Booking System</h3>
-                        <p>
-                            Full-stack flight booking system allowing users to search flights, check real-time
-                            availability, and manage reservations.
-                            Includes a comprehensive admin panel for flight global management.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="skill-tag">PHP</span>
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">HTML/CSS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 (NEW) -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Modern Warehouse / Garment Inventory (User Uploaded) -->
-                        <img src="images/inventory_garment.jpg" alt="Inventory Management System"
-                            onerror="this.onerror=null;this.src='https://placehold.co/800x500?text=Inventory+Project';">
-                    </div>
-                    <div class="project-info">
-                        <h3>Inventory Management System</h3>
-                        <p>
-                            A comprehensive system for tracking stock levels, managing product data, and generating
-                            reports.
-                            Built to streamline supply chain operations and ensure data accuracy.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="skill-tag">PHP</span>
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">HTML/CSS</span>
-                            <span class="skill-tag">Bootstrap</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Show More Projects Button -->
-            <div class="show-more-projects-container" style="text-align: center; margin-top: 2rem; display: none;">
-                <button id="show-more-projects-btn" class="btn btn-outline" style="min-width: 150px;">View More</button>
             </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container contact-container">
-            <div class="contact-card">
-                <h2 class="section-title" style="margin-bottom: 2rem;">Let's <span class="accent-text">Connect</span>
+        <!-- 5.5 All Certifications (Span 12) -->
+        <div class="col-span-12" id="certifications" style="margin-top: 2rem;">
+            <h2 class="serif-font"
+                style="font-size: 2rem; margin-bottom: 2rem; text-transform: uppercase; text-align: center;">
+                Certifications</h2>
+
+            <style>
+                .cert-marquee-container {
+                    width: 100%;
+                    overflow: hidden;
+                    position: relative;
+                    padding: 1.5rem 0;
+                    display: flex;
+                    gap: 2rem;
+                    /* Use CSS Mask instead of solid black gradient to support the glowing orbs background */
+                    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+                    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+                }
+
+                .cert-marquee-group {
+                    display: flex;
+                    gap: 2rem;
+                    flex-shrink: 0;
+                    animation: scrollMarquee 40s linear infinite;
+                }
+
+                .cert-marquee-container:hover .cert-marquee-group {
+                    animation-play-state: paused;
+                }
+
+                @keyframes scrollMarquee {
+                    0% {
+                        transform: translateX(0);
+                    }
+
+                    100% {
+                        transform: translateX(calc(-100% - 2rem));
+                    }
+                }
+
+                .cert-glass-card {
+                    width: 380px;
+                    /* Fixed width for marquee */
+                    background: var(--glass-highlight);
+                    border: 1px solid var(--border-color);
+                    border-radius: 24px;
+                    overflow: hidden;
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    text-decoration: none;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    flex-shrink: 0;
+                }
+
+                .cert-glass-card:hover {
+                    transform: translateY(-8px);
+                    border-color: rgba(168, 85, 247, 0.6);
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(168, 85, 247, 0.2);
+                    background: var(--glass-highlight);
+                    z-index: 10;
+                }
+
+                .cert-img-wrapper {
+                    width: 100%;
+                    height: 220px;
+                    background: #050508;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .cert-img-wrapper img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    padding: 1.5rem;
+                    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                    opacity: 0.85;
+                }
+
+                .cert-glass-card:hover .cert-img-wrapper img {
+                    transform: scale(1.08);
+                    opacity: 1;
+                }
+
+                .cert-details {
+                    padding: 1.8rem;
+                    display: flex;
+                    flex-direction: column;
+                    flex-grow: 1;
+                    background: linear-gradient(180deg, rgba(20, 15, 30, 0) 0%, rgba(20, 15, 30, 0.8) 100%);
+                    z-index: 2;
+                }
+
+                .cert-issuer-badge {
+                    font-size: 0.75rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.15em;
+                    color: var(--text-primary);
+                    background: linear-gradient(135deg, #a855f7, #ec4899);
+                    padding: 5px 12px;
+                    border-radius: 8px;
+                    display: inline-block;
+                    margin-bottom: 1rem;
+                    width: fit-content;
+                    font-weight: 600;
+                }
+
+                .cert-title-v2 {
+                    font-size: 1.25rem;
+                    color: var(--text-primary);
+                    margin-bottom: 0.5rem;
+                    font-weight: 700;
+                    line-height: 1.3;
+                }
+
+                .cert-footer-v2 {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-top: auto;
+                    padding-top: 1.2rem;
+                    border-top: 1px solid rgba(255, 255, 255, 0.08);
+                    color: var(--text-secondary);
+                    font-size: 0.9rem;
+                }
+
+                .cert-verify-btn {
+                    color: var(--glow-cyan);
+                    font-size: 0.85rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    transition: 0.3s;
+                }
+
+                .cert-glass-card:hover .cert-verify-btn {
+                    color: var(--text-primary);
+                    text-shadow: 0 0 8px var(--glow-cyan);
+                }
+
+                @media (max-width: 768px) {
+                    .cert-glass-card {
+                        width: 300px;
+                    }
+                }
+            </style>
+
+            <div class="cert-marquee-container">
+                <!-- Group 1 -->
+                <div class="cert-marquee-group">
+                    <!-- Certificate 1: MongoDB -->
+                    <a href="#" class="cert-glass-card" onclick="return false;">
+                        <div class="cert-img-wrapper">
+                            <img src="images/MongoDB%20Node%20js%20Develo%5Ber%20path%20certificate.jpg"
+                                alt="MongoDB Node.js" onerror="this.src='https://placehold.co/400x300?text=MongoDB'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge">MongoDB</span>
+                            <h4 class="cert-title-v2">MongoDB Node.js Developer Path</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2026</span>
+
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Certificate 2: Google Cloud -->
+                    <a href="#" class="cert-glass-card" onclick="return false;">
+                        <div class="cert-img-wrapper">
+                            <img src="images/Coursera Google Cloud Certificate.png" alt="Google Cloud"
+                                onerror="this.src='https://placehold.co/400x300?text=Google+Cloud'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge"
+                                style="background: linear-gradient(135deg, #4285F4, #34A853);">Coursera / GOOGLE</span>
+                            <h4 class="cert-title-v2">Google Cloud Fundamentals</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2025</span>
+
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Certificate 3: Amazon Q -->
+                    <a href="#" class="cert-glass-card" onclick="return false;">
+                        <div class="cert-img-wrapper">
+                            <img src="images/Amazon Q Developer Certificate.png" alt="Amazon Q"
+                                onerror="this.src='https://placehold.co/400x300?text=Amazon+Q'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge"
+                                style="background: linear-gradient(135deg, #FF9900, #232F3E);">AWS</span>
+                            <h4 class="cert-title-v2">Amazon Q Developer</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2025</span>
+
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Certificate 4: Python -->
+                    <a href="#" class="cert-glass-card" onclick="return false;">
+                        <div class="cert-img-wrapper">
+                            <img src="images/Python_for_Beginners_E-Certificate_page-0001.jpg" alt="Python"
+                                onerror="this.src='https://placehold.co/400x300?text=Python'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge"
+                                style="background: linear-gradient(135deg, #306998, #FFD43B); color: #000;">University
+                                of
+                                Moratuwa</span>
+                            <h4 class="cert-title-v2">Python for Beginners</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2024</span>
+
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Certificate 5: IBM Cyber -->
+                    <a href="https://coursera.org/share/ab4894085a66185591eec2253e926a78" target="_blank"
+                        class="cert-glass-card">
+                        <div class="cert-img-wrapper">
+                            <img src="images/Coursera cyber security.png" alt="Cybersecurity"
+                                onerror="this.src='https://placehold.co/400x300?text=Cybersecurity'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge"
+                                style="background: linear-gradient(135deg, #0530ad, #001d6c);">Coursera / IBM</span>
+                            <h4 class="cert-title-v2">IBM Cybersecurity</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2024</span>
+
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Certificate 6: Project Management -->
+                    <a href="https://open.uom.lk/lms/mod/customcert/verify_certificate.php" target="_blank"
+                        class="cert-glass-card">
+                        <div class="cert-img-wrapper">
+                            <img src="images/Foundations_of_Project_Management_E-Certificate_2_page-0001.jpg"
+                                alt="Project Management"
+                                onerror="this.src='https://placehold.co/400x300?text=Project+Management'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge"
+                                style="background: linear-gradient(135deg, #8B5CF6, #3B82F6);">University of
+                                Moratuwa</span>
+                            <h4 class="cert-title-v2">Foundations of Project Management</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2024</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Group 2 (Duplicated for infinite scroll) -->
+                <div class="cert-marquee-group" aria-hidden="true">
+                    <!-- Certificate 1: MongoDB -->
+                    <a href="#" class="cert-glass-card" onclick="return false;" tabindex="-1">
+                        <div class="cert-img-wrapper">
+                            <img src="images/MongoDB%20Node%20js%20Develo%5Ber%20path%20certificate.jpg"
+                                alt="MongoDB Node.js" onerror="this.src='https://placehold.co/400x300?text=MongoDB'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge">MongoDB</span>
+                            <h4 class="cert-title-v2">MongoDB Node.js Developer Path</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2026</span>
+
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Certificate 2: Google Cloud -->
+                    <a href="#" class="cert-glass-card" onclick="return false;" tabindex="-1">
+                        <div class="cert-img-wrapper">
+                            <img src="images/Coursera Google Cloud Certificate.png" alt="Google Cloud"
+                                onerror="this.src='https://placehold.co/400x300?text=Google+Cloud'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge"
+                                style="background: linear-gradient(135deg, #4285F4, #34A853);">Coursera</span>
+                            <h4 class="cert-title-v2">Google Cloud Fundamentals</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2025</span>
+
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Certificate 3: Amazon Q -->
+                    <a href="#" class="cert-glass-card" onclick="return false;" tabindex="-1">
+                        <div class="cert-img-wrapper">
+                            <img src="images/Amazon Q Developer Certificate.png" alt="Amazon Q"
+                                onerror="this.src='https://placehold.co/400x300?text=Amazon+Q'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge"
+                                style="background: linear-gradient(135deg, #FF9900, #232F3E);">Amazon</span>
+                            <h4 class="cert-title-v2">Amazon Q Developer</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2025</span>
+
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Certificate 4: Python -->
+                    <a href="#" class="cert-glass-card" onclick="return false;" tabindex="-1">
+                        <div class="cert-img-wrapper">
+                            <img src="images/Python_for_Beginners_E-Certificate_page-0001.jpg" alt="Python"
+                                onerror="this.src='https://placehold.co/400x300?text=Python'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge"
+                                style="background: linear-gradient(135deg, #306998, #FFD43B); color: #000;">UoM</span>
+                            <h4 class="cert-title-v2">Python for Beginners</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2024</span>
+
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Certificate 5: IBM Cyber -->
+                    <a href="https://coursera.org/share/ab4894085a66185591eec2253e926a78" target="_blank"
+                        class="cert-glass-card" tabindex="-1">
+                        <div class="cert-img-wrapper">
+                            <img src="images/Coursera cyber security.png" alt="Cybersecurity"
+                                onerror="this.src='https://placehold.co/400x300?text=Cybersecurity'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge"
+                                style="background: linear-gradient(135deg, #0530ad, #001d6c);">Coursera / IBM</span>
+                            <h4 class="cert-title-v2">IBM Cybersecurity</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2024</span>
+
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Certificate 6: Project Management -->
+                    <a href="https://open.uom.lk/lms/mod/customcert/verify_certificate.php" target="_blank"
+                        class="cert-glass-card" tabindex="-1">
+                        <div class="cert-img-wrapper">
+                            <img src="images/Foundations_of_Project_Management_E-Certificate_2_page-0001.jpg"
+                                alt="Project Management"
+                                onerror="this.src='https://placehold.co/400x300?text=Project+Management'">
+                        </div>
+                        <div class="cert-details">
+                            <span class="cert-issuer-badge"
+                                style="background: linear-gradient(135deg, #8B5CF6, #3B82F6);">University of
+                                Moratuwa</span>
+                            <h4 class="cert-title-v2">Foundations of Project Management</h4>
+                            <div class="cert-footer-v2">
+                                <span>Issued: 2024</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 6. Massive Center Showcase: 6 Project Gallery (Span 12) -->
+        <div class="col-span-12" id="projects" style="margin-top: 2rem;">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 class="serif-font"
+                    style="font-size: 2.5rem; text-transform: uppercase; color: var(--text-primary); text-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);">
+                    Featured Work</h2>
+                <p
+                    style="color: var(--glow-cyan); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.9rem;">
+                    Showcasing Next-Gen Web Solutions</p>
+            </div>
+
+            <style>
+                .projects-symmetric-grid {
+                    display: grid;
+                    grid-template-columns: repeat(12, 1fr);
+                    gap: 1.5rem;
+                }
+
+                .project-card-sym {
+                    background: var(--glass-highlight);
+                    border: 1px solid var(--border-color);
+                    border-radius: 20px;
+                    overflow: hidden;
+                    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    grid-column: span 4;
+                }
+
+                .project-card-sym:hover {
+                    transform: translateY(-8px);
+                    border-color: rgba(0, 240, 255, 0.4);
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.15);
+                    background: var(--glass-highlight);
+                    z-index: 10;
+                }
+
+                .project-img-sym {
+                    width: 100%;
+                    height: 220px;
+                    background: #050505;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .project-img-sym img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s;
+                    opacity: 0.8;
+                }
+
+                .project-card-sym:hover .project-img-sym img {
+                    transform: scale(1.08);
+                    opacity: 1;
+                }
+
+                .floating-badge {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    background: rgba(0, 0, 0, 0.6);
+                    backdrop-filter: blur(8px);
+                    border: 1px solid var(--border-color);
+                    color: var(--glow-cyan);
+                    padding: 4px 12px;
+                    border-radius: 100px;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    z-index: 2;
+                }
+
+                .project-info-sym {
+                    padding: 1.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    flex-grow: 1;
+                    background: linear-gradient(180deg, rgba(10, 10, 15, 0) 0%, rgba(10, 10, 15, 0.8) 100%);
+                }
+
+                .project-title-sym {
+                    font-size: 1.4rem;
+                    color: var(--text-primary);
+                    margin-bottom: 0.8rem;
+                    font-weight: 700;
+                    line-height: 1.3;
+                }
+
+                .project-desc-sym {
+                    color: var(--text-secondary);
+                    font-size: 0.9rem;
+                    line-height: 1.6;
+                    margin-bottom: 1.5rem;
+                }
+
+                .tech-stack-sym {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.5rem;
+                    margin-bottom: 1.5rem;
+                    margin-top: auto;
+                }
+
+                .skill-tag-sym {
+                    font-size: 0.75rem;
+                    padding: 4px 10px;
+                    background: var(--glass-highlight);
+                    border: 1px solid var(--border-color);
+                    border-radius: 100px;
+                    color: var(--text-primary);
+                }
+
+                @media (max-width: 1024px) {
+                    .project-card-sym {
+                        grid-column: span 12;
+                    }
+                }
+            </style>
+
+            <div class="projects-symmetric-grid">
+
+                <!-- Project 1: Verity -->
+                <div class="project-card-sym" data-tilt data-tilt-max="2" data-tilt-speed="400">
+                    <div class="project-img-sym">
+                        <span class="floating-badge"><i class="fas fa-star" style="margin-right: 5px;"></i>
+                            Featured</span>
+                        <img src="images/verity.png" alt="Verity Systems"
+                            onerror="this.src='https://placehold.co/800x500?text=VERITY+Project'">
+                    </div>
+                    <div class="project-info-sym">
+                        <h3 class="project-title-sym serif-font">Verity Systems</h3>
+                        <p class="project-desc-sym">Full-stack campus management platform integrating real-time
+                            tracking, intuitive UI, and secure data handling.</p>
+                        <div class="tech-stack-sym">
+                            <span class="skill-tag-sym">React</span><span class="skill-tag-sym">Node.js</span><span
+                                class="skill-tag-sym">Prisma</span><span class="skill-tag-sym">Redis</span>
+                        </div>
+                        <a href="project-details.html" class="pill-btn"
+                            style="padding: 8px 20px; font-size: 0.85rem; width: fit-content;">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Project 2: School MS -->
+                <div class="project-card-sym" data-tilt data-tilt-max="2" data-tilt-speed="400">
+                    <div class="project-img-sym">
+                        <span class="floating-badge">Management</span>
+                        <img src="images/student_ms.png" alt="School Management System"
+                            onerror="this.src='https://placehold.co/800x500?text=School+Management'">
+                    </div>
+                    <div class="project-info-sym">
+                        <h3 class="project-title-sym serif-font">School Management</h3>
+                        <p class="project-desc-sym">A comprehensive system featuring student/staff management,
+                            attendance tracking, and an integrated AI assistant.</p>
+                        <div class="tech-stack-sym">
+                            <span class="skill-tag-sym">Python</span><span class="skill-tag-sym">FastAPI</span><span
+                                class="skill-tag-sym">PostgreSQL</span><span class="skill-tag-sym">Tailwind</span>
+                        </div>
+                        <a href="school-ms-details.html" class="pill-btn"
+                            style="padding: 8px 20px; font-size: 0.85rem; width: fit-content;">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Serendib GO -->
+                <div class="project-card-sym" data-tilt data-tilt-max="2" data-tilt-speed="400">
+                    <div class="project-img-sym">
+                        <span class="floating-badge">Travel</span>
+                        <img src="images/serandib_go_new.png" alt="Serendib GO"
+                            onerror="this.src='https://placehold.co/800x500?text=Tourism+Project'">
+                    </div>
+                    <div class="project-info-sym">
+                        <h3 class="project-title-sym serif-font">Serendib GO</h3>
+                        <p class="project-desc-sym">A comprehensive travel management platform tailored for the Sri
+                            Lankan tourism ecosystem with geospatial tracking.</p>
+                        <div class="tech-stack-sym">
+                            <span class="skill-tag-sym">React</span><span class="skill-tag-sym">MongoDB</span><span
+                                class="skill-tag-sym">Stripe</span>
+                        </div>
+                        <a href="serendib-go-details.html" class="pill-btn"
+                            style="padding: 8px 20px; font-size: 0.85rem; width: fit-content;">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Grocery -->
+                <div class="project-card-sym hidden-project-v2" data-tilt data-tilt-max="2" data-tilt-speed="400"
+                    style="display: none;">
+                    <div class="project-img-sym">
+                        <span class="floating-badge">E-Commerce</span>
+                        <img src="images/grocery_fresh_v2.png" alt="Grocery System"
+                            onerror="this.src='https://placehold.co/800x500?text=Grocery+Project'">
+                    </div>
+                    <div class="project-info-sym">
+                        <h3 class="project-title-sym serif-font">Online Grocery</h3>
+                        <p class="project-desc-sym">Java and MVC architecture for browsing products, managing carts, and
+                            seamless order processing.</p>
+                        <div class="tech-stack-sym">
+                            <span class="skill-tag-sym">Java</span><span class="skill-tag-sym">PostgreSQL</span><span
+                                class="skill-tag-sym">MVC</span>
+                        </div>
+                        <a href="grocery-details.html" class="pill-btn"
+                            style="padding: 8px 20px; font-size: 0.85rem; width: fit-content;">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Project 5: Airline -->
+                <div class="project-card-sym hidden-project-v2" data-tilt data-tilt-max="2" data-tilt-speed="400"
+                    style="display: none;">
+                    <div class="project-img-sym">
+                        <span class="floating-badge">Booking</span>
+                        <img src="images/airline_skywave.jpg" alt="Airline Booking"
+                            onerror="this.src='https://placehold.co/800x500?text=Airline+Project'">
+                    </div>
+                    <div class="project-info-sym">
+                        <h3 class="project-title-sym serif-font">Airline Booking</h3>
+                        <p class="project-desc-sym">Full-stack flight booking system to search flights, check
+                            availability, and manage reservations.</p>
+                        <div class="tech-stack-sym">
+                            <span class="skill-tag-sym">PHP</span><span class="skill-tag-sym">MySQL</span><span
+                                class="skill-tag-sym">JS</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Project 6: Inventory -->
+                <div class="project-card-sym hidden-project-v2" data-tilt data-tilt-max="2" data-tilt-speed="400"
+                    style="display: none;">
+                    <div class="project-img-sym">
+                        <span class="floating-badge">System</span>
+                        <img src="images/inventory_garment.jpg" alt="Inventory"
+                            onerror="this.src='https://placehold.co/800x500?text=Inventory+Project'">
+                    </div>
+                    <div class="project-info-sym">
+                        <h3 class="project-title-sym serif-font">Inventory System</h3>
+                        <p class="project-desc-sym">System for tracking stock levels, managing product data, and
+                            generating real-time analytics reports.</p>
+                        <div class="tech-stack-sym">
+                            <span class="skill-tag-sym">PHP</span><span class="skill-tag-sym">MySQL</span><span
+                                class="skill-tag-sym">Bootstrap</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; display: flex; justify-content: center; gap: 1rem;">
+                <button id="show-more-wow-btn" class="btn btn-glow" style="min-width: 180px;">Discover More
+                    Projects</button>
+                <button id="show-less-wow-btn" class="btn btn-glow" style="min-width: 180px; display: none;">Show Less
+                    Projects</button>
+            </div>
+
+            <script>
+                const showMoreBtn = document.getElementById('show-more-wow-btn');
+                const showLessBtn = document.getElementById('show-less-wow-btn');
+                const hiddenProjects = document.querySelectorAll('.hidden-project-v2');
+
+                showMoreBtn.addEventListener('click', function () {
+                    hiddenProjects.forEach(p => {
+                        p.style.display = 'flex';
+                        p.style.animation = 'slideDownFade 0.5s forwards';
+                    });
+                    showMoreBtn.style.display = 'none';
+                    showLessBtn.style.display = 'inline-flex';
+                });
+
+                showLessBtn.addEventListener('click', function () {
+                    hiddenProjects.forEach(p => {
+                        p.style.display = 'none';
+                    });
+                    showLessBtn.style.display = 'none';
+                    showMoreBtn.style.display = 'inline-flex';
+
+                    // Scroll up so the user isn't left at the empty bottom
+                    const projectsSection = document.getElementById('projects');
+                    if (projectsSection) {
+                        const navHeight = 80;
+                        window.scrollTo({
+                            top: projectsSection.getBoundingClientRect().top + window.pageYOffset - navHeight,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            </script>
+        </div>
+
+        <!-- 7. Contact Form (Span 8) & Bottom Stats (Span 4) -->
+        <div class="col-span-12" id="contact"
+            style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; margin-top: 1rem;">
+
+            <!-- Contact Form Card -->
+            <div class="col-span-8 bento-card" data-tilt data-tilt-max="1">
+                <h2 class="serif-font" style="font-size: 1.8rem; margin-bottom: 1rem; text-transform: uppercase;">Let's
+                    <span style="color: var(--glow-amber);">Connect</span>
                 </h2>
-                <p style="color: var(--text-secondary); margin-bottom: 3rem;">
-                    Have a project in mind or want to collaborate? I'd love to hear from you.
-                </p>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Have a project in mind or want to
+                    collaborate? I'd love to hear from you.</p>
+
                 <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-input" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-input" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" class="form-input" placeholder="Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                    <p id="form-status" class="form-status"></p>
+                    <input type="text" name="name" class="form-input" placeholder="Your Name" required>
+                    <input type="email" name="email" class="form-input" placeholder="Your Email" required>
+                    <textarea name="message" class="form-input" placeholder="Message" required></textarea>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem; font-size: 1rem;">Send
+                        Message <i class="fas fa-paper-plane" style="margin-left: 0.5rem;"></i></button>
+                    <p id="form-status" style="margin-top: 1rem; color: var(--glow-green); font-size: 0.9rem;"></p>
                 </form>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="socials">
-                <a href="https://github.com/SSMShehan" target="_blank" class="social-link"><i
-                        class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/shehan-madusanka-a99637235" target="_blank" class="social-link"><i
-                        class="fab fa-linkedin"></i></a>
-                <a href="mailto:shehanmadusanka775@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <!-- Stats & Links Card -->
+            <div class="col-span-4" style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+                <div class="bento-card" data-tilt data-tilt-max="3"
+                    style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <h3 class="serif-font" style="font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase;">
+                        Social Networks</h3>
+                    <div style="display: flex; gap: 1.5rem; justify-content: center;">
+                        <a href="https://linkedin.com/in/ssmshehan" target="_blank"
+                            style="color: var(--text-secondary); font-size: 1.8rem; transition: color 0.3s;"><i
+                                class="fab fa-linkedin" style="color: #0077b5;"></i></a>
+                        <a href="https://github.com/SSMShehan" target="_blank"
+                            style="color: var(--text-secondary); font-size: 1.8rem; transition: color 0.3s;"><i
+                                class="fab fa-github" style="color: var(--text-primary);"></i></a>
+                        <a href="mailto:shehanmadusanka775@gmail.com"
+                            style="color: var(--text-secondary); font-size: 1.8rem; transition: color 0.3s;"><i
+                                class="fas fa-envelope" style="color: var(--glow-amber);"></i></a>
+                    </div>
+                </div>
+
+                <!-- Live Status / Time Widget -->
+                <div class="bento-card" data-tilt data-tilt-max="3"
+                    style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden;">
+
+                    <!-- Pulsing background glow -->
+                    <div
+                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; background: var(--glow-cyan); filter: blur(50px); opacity: 0.2; border-radius: 50%; z-index: 0; pointer-events: none;">
+                    </div>
+
+                    <div style="position: relative; z-index: 1;">
+                        <h3 class="serif-font"
+                            style="font-size: 0.9rem; margin-bottom: 0.8rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em;">
+                            Local Time</h3>
+                        <div id="live-time"
+                            style="font-family: 'Inter', monospace; font-size: 2.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.2rem; text-shadow: 0 0 15px rgba(0,240,255,0.3); letter-spacing: 2px;">
+                            00:00 <span style="font-size: 1rem; color: var(--glow-cyan);">AM</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.2rem;">Colombo, LK
+                        </p>
+
+                        <div
+                            style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(0, 255, 100, 0.1); border: 1px solid rgba(0, 255, 100, 0.2); padding: 0.4rem 1rem; border-radius: 50px;">
+                            <div
+                                style="width: 8px; height: 8px; background: #00ff64; border-radius: 50%; box-shadow: 0 0 10px #00ff64; animation: pulseDot 2s infinite;">
+                            </div>
+                            <span
+                                style="color: #00ff64; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">Available
+                                To Hire</span>
+                        </div>
+                        <style>
+                            @keyframes pulseDot {
+                                0% {
+                                    transform: scale(0.95);
+                                    box-shadow: 0 0 0 0 rgba(0, 255, 100, 0.7);
+                                }
+
+                                70% {
+                                    transform: scale(1);
+                                    box-shadow: 0 0 0 10px rgba(0, 255, 100, 0);
+                                }
+
+                                100% {
+                                    transform: scale(0.95);
+                                    box-shadow: 0 0 0 0 rgba(0, 255, 100, 0);
+                                }
+                            }
+                        </style>
+                    </div>
+                </div>
+
             </div>
-            <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                &copy; 2026 Shehan
-            </p>
+
         </div>
+
+    </main>
+
+    <footer
+        style="text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; position: relative; z-index: 10;">
+        &copy; 2026 SHEHAN MADUSHANKA. ALL RIGHTS RESERVED.
     </footer>
 
+    <!-- Vanilla Tilt JS for 3D Interactions -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"
+        integrity="sha512-wC/cunGGDjXSl9OHsu004bNJxJw53bipZQllChteZQg45kS8uS5XF18LhWn2BWeN1h5jZ5UqV+A3mD4KryD0cw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Original Script for Typing Effect -->
+    <script src="js/script.js"></script>
+
+    <!-- Live Time Script -->
+    <script>
+        function updateTime() {
+            const timeElement = document.getElementById('live-time');
+            if (!timeElement) return;
+
+            const options = { timeZone: 'Asia/Colombo', hour: '2-digit', minute: '2-digit', hour12: true };
+            const timeString = new Intl.DateTimeFormat('en-US', options).format(new Date());
+
+            const parts = timeString.split(' ');
+            timeElement.innerHTML = `${parts[0]} <span style="font-size: 1rem; color: var(--glow-cyan); margin-left: 2px;">${parts[1]}</span>`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+
+    <!-- Contact Form Logic -->
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const status = document.getElementById('form-status');
+            btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+            btn.disabled = true;
+
+            emailjs.sendForm('service_b9ntnsj', 'template_6g2k7w9', this)
+                .then(function () {
+                    status.style.color = 'var(--glow-green)';
+                    status.innerText = 'Message sent successfully!';
+                    btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+                    btn.disabled = false;
+                    document.getElementById('contact-form').reset();
+                }, function (error) {
+                    status.style.color = '#ff5f56';
+                    status.innerText = 'Failed to send message. Please try again.';
+                    btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+                    btn.disabled = false;
+                });
+        });
+    </script>
+
+    <!-- Navbar Spotlight Script -->
+    <script>
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            navbar.addEventListener('mousemove', (e) => {
+                const rect = navbar.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                navbar.style.setProperty('--mouse-x', `${x}px`);
+                navbar.style.setProperty('--mouse-y', `${y}px`);
+            });
+        }
+    </script>
+
+    <!-- ScrollSpy Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = ['skills', 'about', 'certifications', 'projects', 'contact']
+                .map(id => document.getElementById(id))
+                .filter(Boolean);
+
+            function updateActiveLink() {
+                let current = '';
+
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    // If the top of the section is at or above the middle of the viewport
+                    if (rect.top <= window.innerHeight / 2) {
+                        current = section.id;
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    if (current && link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Trigger once on load
+        });
+    </script>
     <!-- Scroll to Top Button -->
-    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
     </button>
-
-
-    <script src="js/script.js?v=3"></script>
 </body>
 
 </html>

@@ -1,4 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Theme Toggle Logic ---
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
+    const ghChart = document.querySelector('.gh-chart-img');
+
+    function setTheme(isDark) {
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+            if (ghChart) {
+                ghChart.src = "https://ghchart.rshah.org/00ff66/SSMShehan";
+            }
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+            if (ghChart) {
+                ghChart.src = "https://ghchart.rshah.org/059669/SSMShehan";
+            }
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    // Default to dark mode if no saved theme
+    const isDarkMode = savedTheme === 'dark' || savedTheme === null;
+    setTheme(isDarkMode);
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const isCurrentlyDark = !document.documentElement.hasAttribute('data-theme');
+            setTheme(!isCurrentlyDark);
+            
+            // Update particles color dynamically if available
+            if (window.particlesMaterial) {
+                window.particlesMaterial.color.setHex(!isCurrentlyDark ? 0xe2e8f0 : 0x0f172a);
+            }
+        });
+    }
+
     const projectDetails = {
         verity: {
             title: 'VERITY Smart Campus Management System',
@@ -182,10 +228,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hiddenElements = document.querySelectorAll('.section-title, .about-content, .skill-card, .project-card, .contact-card, .education-card, .cert-card');
     hiddenElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0, 0.2, 1)';
-        observer.observe(el);
+        const rect = el.getBoundingClientRect();
+        // Only hide and animate elements that are below the viewport
+        if (rect.top > window.innerHeight - 50) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0, 0.2, 1)';
+            observer.observe(el);
+        } else {
+            // Ensure elements already in viewport on load/refresh are fully visible immediately
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }
     });
 
     // --- Typing Interaction ---
@@ -252,11 +306,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Material - Clean, sharp dots
         const particlesMaterial = new THREE.PointsMaterial({
             size: 0.015,
-            color: 0xe2e8f0, // Slate-200 / White-ish
+            color: document.documentElement.hasAttribute('data-theme') ? 0x0f172a : 0xe2e8f0,
             transparent: true,
             opacity: 0.8,
             blending: THREE.AdditiveBlending
         });
+        window.particlesMaterial = particlesMaterial;
 
         // Mesh
         const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -496,6 +551,103 @@ document.addEventListener('DOMContentLoaded', () => {
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+    }
+
+    // --- GitHub Stats Fetch Logic ---
+    const fetchGitHubStats = async () => {
+        const username = 'SSMShehan';
+        const nameEl = document.getElementById('gh-name');
+        const bioEl = document.getElementById('gh-bio');
+        const reposEl = document.getElementById('gh-repos');
+        const followersEl = document.getElementById('gh-followers');
+        const commitsEl = document.getElementById('gh-commits');
+        const avatarEl = document.getElementById('gh-avatar');
+
+        if (!nameEl) return; // If elements don't exist on page, abort
+
+        try {
+            const response = await fetch(`https://api.github.com/users/${username}`);
+            if (response.ok) {
+                const data = await response.json();
+                
+                // Update DOM elements
+                nameEl.textContent = data.name || username;
+                bioEl.textContent = data.bio || 'Passionate about building innovative web solutions.';
+                
+                // Animate numbers up
+                animateValue(reposEl, 0, data.public_repos, 1500);
+                animateValue(followersEl, 0, data.followers, 1500);
+                
+                if (data.avatar_url) {
+                    avatarEl.src = data.avatar_url;
+                }
+            } else {
+                throw new Error('GitHub API responded with an error');
+            }
+        } catch (error) {
+            console.error('Error fetching GitHub stats:', error);
+            nameEl.textContent = username;
+            bioEl.textContent = 'Full Stack Developer';
+            reposEl.textContent = '-';
+            followersEl.textContent = '-';
+        }
+
+        // Fetch Total Commits using GitHub Search API
+        try {
+            if (commitsEl) {
+                const commitsRes = await fetch(`https://api.github.com/search/commits?q=author:${username}`, {
+                    headers: {
+                        'Accept': 'application/vnd.github.cloak-preview'
+                    }
+                });
+                if (commitsRes.ok) {
+                    const commitData = await commitsRes.json();
+                    if (commitData && commitData.total_count !== undefined) {
+                        animateValue(commitsEl, 0, commitData.total_count, 1500);
+                    } else {
+                        commitsEl.textContent = '0';
+                    }
+                } else {
+                    commitsEl.textContent = '-';
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching commits:', error);
+            if (commitsEl) commitsEl.textContent = '-';
+        }
+
+    };
+
+    // Helper function to animate number counting up
+    function animateValue(obj, start, end, duration) {
+        if (!end) return;
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            obj.innerHTML = Math.floor(progress * (end - start) + start);
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                obj.innerHTML = end; // Ensure final value is exact
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    // Initialize fetch
+    fetchGitHubStats();
+
+    // --- Scroll to Top Button ---
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
         });
     }
 

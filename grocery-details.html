@@ -2,487 +2,476 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Grocery Store System</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta name="description"
-    content="Project details page for the Online Grocery Store System - a full-featured web-based grocery ordering platform." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
+    content="Project details page for the Online Grocery Store System - a full-featured web-based grocery ordering platform.">
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            body: ['Outfit', 'sans-serif'],
-            display: ['Space Grotesk', 'sans-serif']
-          },
-          colors: {
-            ink: '#030014',
-            panel: 'rgba(255,255,255,0.04)',
-            line: 'rgba(255,255,255,0.10)'
-          },
-          boxShadow: {
-            glow: '0 0 40px rgba(168,85,247,0.22), 0 24px 80px rgba(0,0,0,0.45)'
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
   <style>
-    :root {
-      --accent: linear-gradient(135deg, #10b981 0%, #3b82f6 52%, #8b5cf6 100%);
+    /* Specific tweaks for Project Details page */
+    .project-header {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    html {
-      scroll-behavior: smooth;
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      background: var(--glass-highlight);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
     }
 
-    body {
-      font-family: 'Outfit', sans-serif;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.18), transparent 30%),
-        radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.14), transparent 28%),
-        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.10), transparent 26%),
-        #030014;
-      color: #fff;
-      overflow-x: hidden;
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #10b981;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+      transform: translateY(-2px);
     }
 
-    .glass {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      backdrop-filter: blur(20px) saturate(160%);
+    .hero-title {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
     }
 
-    .accent-text {
-      background: var(--accent);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
     }
 
-    .grid-overlay {
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-      background-size: 52px 52px;
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 28%, rgba(0, 0, 0, 0.3) 100%);
+    .pill-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      color: #10b981;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    .feature-icon-wrapper {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: var(--glass-highlight);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      border: 1px solid var(--border-color);
     }
 
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .floaty {
-      animation: floaty 8s ease-in-out infinite;
-    }
-
-    .floaty-delay {
-      animation: floaty 10s ease-in-out infinite;
-      animation-delay: -4s;
-    }
-
-    @keyframes floaty {
-
-      0%,
-      100% {
-        transform: translateY(0px) translateX(0px);
-      }
-
-      50% {
-        transform: translateY(-14px) translateX(8px);
-      }
-    }
-
-    .shine {
+    .mockup-container {
+      width: 100%;
+      border-radius: 20px;
+      background: rgba(10, 10, 15, 0.8);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
       position: relative;
       overflow: hidden;
     }
 
-    .shine::after {
+    .mockup-container::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
-      transform: translateX(-120%);
-      animation: sweep 6.5s infinite;
-      pointer-events: none;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #10b981, var(--glow-purple), transparent);
     }
 
-    @keyframes sweep {
-      0% {
-        transform: translateX(-120%);
-      }
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
 
-      35% {
-        transform: translateX(120%);
-      }
-
-      100% {
-        transform: translateX(120%);
-      }
+    .tag {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: var(--glass-highlight);
+      border: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
     }
   </style>
 </head>
 
-<body class="font-body">
-  <div class="fixed inset-0 pointer-events-none grid-overlay opacity-60"></div>
-  <div class="fixed -top-24 -left-24 h-96 w-96 rounded-full bg-emerald-500/15 blur-3xl floaty pointer-events-none">
-  </div>
-  <div
-    class="fixed top-20 right-0 h-[28rem] w-[28rem] rounded-full bg-blue-500/15 blur-3xl floaty-delay pointer-events-none">
-  </div>
+<body>
+  <!-- 🌌 Ambient Neon Orbs -->
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="ambient-orb orb-3"></div>
 
-  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#030014]/70 backdrop-blur-xl">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
-      <a href="index.html"
-        class="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/10">
-        <span class="text-lg leading-none">←</span>
-        Back to Portfolio
+  <main class="container">
+    <!-- Header -->
+    <header class="project-header" style="margin-top: 2rem;">
+      <a href="index.html#projects" class="back-btn"
+        onclick="if(document.referrer.includes(window.location.host)) { history.back(); return false; }">
+        <i class="fas fa-arrow-left"></i> Back to Portfolio
       </a>
-      <div class="hidden items-center gap-3 md:flex">
-        <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(74,222,128,0.9)]"></span>
-        <span class="text-xs uppercase tracking-[0.28em] text-white/55">Project Details</span>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <button id="theme-toggle"
+          style="background: none; border: none; color: var(--text-primary); font-size: 1.2rem; cursor: pointer; padding: 0.5rem; transition: color 0.3s; margin-right: 1rem;"
+          aria-label="Toggle Theme">
+          <i class="fas fa-sun"></i>
+        </button>
+        <span
+          style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981;"></span>
+        <span
+          style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-secondary);">Project
+          Details</span>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8 lg:py-14">
-    <section class="reveal grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
-      <div class="space-y-7">
-        <div
-          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white/75">
-          Selected Work
-        </div>
-        <div class="space-y-4">
-          <p class="text-sm uppercase tracking-[0.32em] text-white/45">Project Title</p>
-          <h1 class="font-display text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-            <span class="accent-text">FARMART</span><br> Online Grocery Ordering System
-          </h1>
-          <div class="flex flex-wrap gap-4 pt-4">
-            <a href="https://github.com/SSMShehan/Grocery-Ordering-System.git" target="_blank"
-              class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#030014] transition hover:scale-[1.02] hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-              <i class="fab fa-github text-lg"></i> View GitHub
-            </a>
-            <a href="#"
-              class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-              <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
-          </div>
-        </div>
-        <div class="glass rounded-[1.75rem] p-6 shadow-glow sm:p-8">
-          <p class="text-sm uppercase tracking-[0.28em] text-white/45">Overview</p>
-          <p class="mt-4 text-base leading-8 text-white/75 sm:text-lg">
-            A full-featured web-based grocery ordering platform designed to bridge the gap between consumers and retail
+    <!-- Main Bento Dashboard -->
+    <div class="bento-dashboard" style="padding-top: 0; margin-top: 1rem;">
+
+      <!-- Hero & Overview (Span 8) -->
+      <div class="col-span-8 bento-card" data-tilt data-tilt-max="2" data-tilt-speed="400">
+        <span class="pill-badge">Selected Work</span>
+        <h1 class="hero-title serif-font">
+          <span style="color: #10b981;">FARMART</span>
+        </h1>
+        <p class="hero-subtitle">Fresh Grocery Delivery App</p>
+
+        <h3 class="serif-font" style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--glow-purple);">Overview</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem; font-size: 1.1rem;">
+          A full-featured web-based grocery ordering platform designed to bridge the gap between consumers and retail
             inventory. It enables customers to browse catalogs, manage a shopping cart, and securely check out, while
             providing dedicated dashboards for administrators, support agents, and delivery personnel to manage
             operations, orders, and customer queries efficiently.
-          </p>
+        </p>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="https://github.com/SSMShehan/Grocery-Ordering-System.git" target="_blank" class="btn-primary"
+            style="border-radius: 50px;">
+            <i class="fab fa-github"></i> View GitHub
+          </a>
         </div>
       </div>
 
-      <div class="reveal relative">
-        <div
-          class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-emerald-500/10 via-blue-500/10 to-violet-500/10 blur-2xl">
+      <!-- Problem Solved (Span 4) -->
+      <div class="col-span-4 bento-card" data-tilt data-tilt-max="3" data-tilt-speed="400"
+        style="display: flex; flex-direction: column; justify-content: center;">
+        <div class="feature-icon-wrapper" style="color: var(--glow-amber); border-color: rgba(255, 170, 0, 0.3);">
+          <i class="fas fa-lightbulb"></i>
         </div>
-        <div class="glass shine relative overflow-hidden rounded-[2rem] border-white/15 p-4 shadow-glow">
-          <div class="rounded-[1.6rem] border border-white/10 bg-[#070716] p-4 sm:p-5">
-            <div class="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
-              <div>
-                <p class="text-xs uppercase tracking-[0.28em] text-white/45">Main Mockup</p>
-                <h2 class="mt-2 font-display text-xl font-semibold text-white/90 sm:text-2xl">Grocery Dashboard Preview
-                </h2>
+        <h3 class="serif-font" style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">The Problem
+          It Solves</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          Physical retail inventory is often disconnected from online consumers, making grocery shopping tedious and order management chaotic. FARMART bridges this gap by providing a seamless shopping cart for customers while empowering admins, support agents, and delivery personnel with dedicated operational dashboards.
+        </p>
+      </div>
+
+      <!-- Main Mockup (Span 12) -->
+      <div class="col-span-12 bento-card" data-tilt data-tilt-max="1" data-tilt-speed="400" style="padding: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <h3 class="serif-font" style="font-size: 1.8rem;">Dashboard Preview</h3>
+          <span class="pill-badge" style="margin-bottom: 0;">Mockup</span>
+        </div>
+        <div class="mockup-container">
+          <!-- Abstract representation of dashboard since we don't have images -->
+          <div style="display: grid; grid-template-columns: 250px 1fr; gap: 1.5rem; min-height: 400px;">
+            <!-- Sidebar -->
+            <div
+              style="background: var(--glass-highlight); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+              <div
+                style="width: 80%; height: 24px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-bottom: 2rem;">
               </div>
               <div
-                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/55">
-                Placeholder</div>
+                style="width: 100%; height: 40px; background: rgba(0, 240, 255, 0.15); border-radius: 8px; border-left: 3px solid #10b981;">
+              </div>
+              <div style="width: 90%; height: 40px; background: var(--glass-highlight); border-radius: 8px;"></div>
+              <div style="width: 85%; height: 40px; background: var(--glass-highlight); border-radius: 8px;"></div>
+              <div style="width: 95%; height: 40px; background: var(--glass-highlight); border-radius: 8px;"></div>
             </div>
-            <div class="grid gap-4 lg:grid-cols-[0.42fr_0.58fr]">
-              <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
-                <div class="mb-4 h-8 w-28 rounded-full bg-white/10"></div>
-                <div class="space-y-3">
-                  <div class="h-11 rounded-2xl bg-gradient-to-r from-emerald-500/35 to-blue-500/20"></div>
-                  <div class="h-11 rounded-2xl bg-white/6"></div>
-                  <div class="h-11 rounded-2xl bg-white/6"></div>
-                  <div class="h-11 rounded-2xl bg-white/6"></div>
+            <!-- Main Content Area -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <!-- Top stats -->
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                <div
+                  style="height: 100px; background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), transparent); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px;">
+                </div>
+                <div
+                  style="height: 100px; background: linear-gradient(135deg, rgba(166, 0, 255, 0.1), transparent); border: 1px solid rgba(166, 0, 255, 0.2); border-radius: 12px;">
+                </div>
+                <div
+                  style="height: 100px; background: linear-gradient(135deg, rgba(255, 170, 0, 0.1), transparent); border: 1px solid rgba(255, 170, 0, 0.2); border-radius: 12px;">
                 </div>
               </div>
-              <div class="space-y-4">
-                <div class="grid gap-4 sm:grid-cols-2">
-                  <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
-                    <div class="h-5 w-20 rounded-full bg-emerald-400/20"></div>
-                    <div class="mt-5 h-24 rounded-[1.1rem] bg-gradient-to-br from-emerald-400/20 to-cyan-400/10"></div>
-                  </div>
-                  <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
-                    <div class="h-5 w-24 rounded-full bg-blue-400/20"></div>
-                    <div class="mt-5 h-24 rounded-[1.1rem] bg-gradient-to-br from-blue-400/20 to-indigo-400/10"></div>
-                  </div>
+              <!-- Charts / Tables -->
+              <div
+                style="flex: 1; background: var(--glass-highlight); border-radius: 12px; border: 1px solid var(--border-color); padding: 1.5rem;">
+                <div
+                  style="width: 200px; height: 20px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-bottom: 1.5rem;">
                 </div>
-                <div class="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <div class="h-4 w-32 rounded-full bg-white/15"></div>
-                      <div class="mt-3 h-3 w-52 rounded-full bg-white/8"></div>
-                    </div>
-                    <div class="h-10 w-10 rounded-2xl bg-gradient-to-br from-emerald-500/35 to-violet-500/20"></div>
-                  </div>
-                  <div class="mt-4 grid gap-3 sm:grid-cols-3">
-                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
-                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
-                    <div class="h-20 rounded-[1rem] bg-white/[0.03]"></div>
-                  </div>
+                <div style="width: 100%; height: 2px; background: var(--glass-highlight); margin-bottom: 1rem;"></div>
+                <div
+                  style="width: 100%; height: 30px; background: var(--glass-highlight); border-radius: 4px; margin-bottom: 0.8rem;">
                 </div>
+                <div
+                  style="width: 100%; height: 30px; background: var(--glass-highlight); border-radius: 4px; margin-bottom: 0.8rem;">
+                </div>
+                <div
+                  style="width: 100%; height: 30px; background: var(--glass-highlight); border-radius: 4px; margin-bottom: 0.8rem;">
+                </div>
+                <div style="width: 100%; height: 30px; background: var(--glass-highlight); border-radius: 4px;"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-
-
-    <section class="reveal mt-20 lg:mt-24">
-      <div class="mb-8">
-        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Tech Stack</p>
-        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Built With a <span class="accent-text">Robust
-            Stack</span></h2>
+      <!-- Tech Stack Section Title -->
+      <div class="col-span-12" style="margin-top: 1rem;">
+        <h2 class="serif-font"
+          style="font-size: 2rem; text-transform: uppercase; text-align: center; color: var(--text-primary);">Built With
+          a <span style="color: #10b981;">Practical Stack</span></h2>
       </div>
-      <div class="grid gap-5 lg:grid-cols-4">
-        <article class="glass rounded-[1.5rem] p-6 lg:col-span-1">
-          <p class="text-xs uppercase tracking-[0.28em] text-white/40">Frontend</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fab fa-java text-orange-400"></i> JSP & JSTL</span>
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fab fa-html5 text-orange-500"></i> HTML5</span>
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fab fa-js text-yellow-400"></i> Vanilla JS</span>
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fab fa-css3-alt text-blue-400"></i> CSS3</span>
-          </div>
-        </article>
-        <article class="glass rounded-[1.5rem] p-6 lg:col-span-1">
-          <p class="text-xs uppercase tracking-[0.28em] text-white/40">Backend</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fab fa-java text-red-500"></i> Java 11/17</span>
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fas fa-server text-gray-300"></i> Servlet API</span>
-          </div>
-        </article>
-        <article class="glass rounded-[1.5rem] p-6 lg:col-span-1">
-          <p class="text-xs uppercase tracking-[0.28em] text-white/40">Database</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fas fa-database text-blue-400"></i> PostgreSQL</span>
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fas fa-plug text-indigo-400"></i> JDBC</span>
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fas fa-cloud text-emerald-400"></i> Supabase</span>
-          </div>
-        </article>
-        <article class="glass rounded-[1.5rem] p-6 lg:col-span-1">
-          <p class="text-xs uppercase tracking-[0.28em] text-white/40">DevOps & Tools</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fab fa-docker text-blue-500"></i> Docker</span>
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fas fa-cubes text-red-400"></i> Maven</span>
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fas fa-cat text-yellow-500"></i> Tomcat 9.0</span>
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"><i
-                class="fas fa-ship text-cyan-500"></i> Jetty</span>
-          </div>
-        </article>
-      </div>
-    </section>
 
-    <section class="reveal mt-20 lg:mt-24">
-      <div class="mb-8">
-        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Key Features</p>
-        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Key Features & <span class="accent-text">Core
-            Functionalities</span></h2>
+      <!-- Frontend (Span 4) -->
+      <div class="col-span-4 bento-card" data-tilt data-tilt-max="3" data-tilt-speed="400">
+        <h3
+          style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.9rem; margin-bottom: 1rem;">
+          Frontend</h3>
+        <div class="tag-list">
+          <span class="tag"><i class="fab fa-java" style="color: #FB923C;"></i> JSP & JSTL</span>
+          <span class="tag"><i class="fab fa-html5 text-orange-500" style="color: #10b981;"></i> HTML5</span>
+          <span class="tag"><i class="fab fa-js" style="color: #FACC15;"></i> Vanilla JS</span>
+          <span class="tag"><i class="fab fa-css3-alt" style="color: #60A5FA;"></i> CSS3</span>
+        </div>
       </div>
-      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
-          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-emerald-300" stroke="currentColor"
-            stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-          <h3 class="mt-5 font-display text-xl font-semibold">Robust Shopping Cart</h3>
-          <p class="mt-3 text-sm leading-7 text-white/65">Session-based cart allowing dynamic item management, checkout
+
+      <!-- Backend (Span 4) -->
+      <div class="col-span-4 bento-card" data-tilt data-tilt-max="3" data-tilt-speed="400">
+        <h3
+          style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.9rem; margin-bottom: 1rem;">
+          Backend</h3>
+        <div class="tag-list">
+          <span class="tag"><i class="fab fa-java text-red-500" style="color: #10b981;"></i> Java 11/17</span>
+          <span class="tag"><i class="fas fa-server text-gray-300" style="color: #10b981;"></i> Servlet API</span>
+        </div>
+      </div>
+
+      <!-- Database (Span 4) -->
+      <div class="col-span-4 bento-card" data-tilt data-tilt-max="3" data-tilt-speed="400">
+        <h3
+          style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.9rem; margin-bottom: 1rem;">
+          Database & Cloud</h3>
+        <div class="tag-list">
+          <span class="tag"><i class="fas fa-database" style="color: #60A5FA;"></i> PostgreSQL</span>
+          <span class="tag"><i class="fas fa-plug" style="color: #818CF8;"></i> JDBC</span>
+          <span class="tag"><i class="fas fa-cloud" style="color: #34D399;"></i> Supabase</span>
+        </div>
+      </div>
+
+      <!-- Features Section Title -->
+      <div class="col-span-12" style="margin-top: 2rem;">
+        <h2 class="serif-font"
+          style="font-size: 2rem; text-transform: uppercase; text-align: center; color: var(--text-primary);">Key
+          Features & <span style="color: var(--glow-purple);">Core Functionalities</span></h2>
+      </div>
+
+      
+      <!-- Feature 1 -->
+      <div class="col-span-4 bento-card" data-tilt data-tilt-max="3">
+        <div class="feature-icon-wrapper" style="color: #10b981; border-color: #10b981;">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--text-primary);">Robust Shopping Cart</h3>
+        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">Session-based cart allowing dynamic item management, checkout
             calculations, taxes, and conditional delivery fees.</p>
-        </article>
-        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
-          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-blue-300" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-          <h3 class="mt-5 font-display text-xl font-semibold">Multi-Role Portals</h3>
-          <p class="mt-3 text-sm leading-7 text-white/65">Distinct authorization flows for Customers, Admins
-            (inventory), Support Agents, and Delivery Personnel.</p>
-        </article>
-        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
-          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-violet-300" stroke="currentColor"
-            stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-          </svg>
-          <h3 class="mt-5 font-display text-xl font-semibold">End-to-End Orders</h3>
-          <p class="mt-3 text-sm leading-7 text-white/65">Comprehensive transaction handling with an advanced OrderDAO,
-            allowing history views and ongoing tracking.</p>
-        </article>
-        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
-          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-pink-300" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243-2.829a4 4 0 115.656 5.656L4.5 20.5m10.607-10.607l-2.829 2.829" />
-          </svg>
-          <h3 class="mt-5 font-display text-xl font-semibold">Support Ticketing</h3>
-          <p class="mt-3 text-sm leading-7 text-white/65">A built-in module for submitting issues, allowing support
-            agents to interactively review, escalate, and resolve customer tickets.</p>
-        </article>
-        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
-          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-cyan-300" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <h3 class="mt-5 font-display text-xl font-semibold">Dynamic Catalog Browsing</h3>
-          <p class="mt-3 text-sm leading-7 text-white/65">An efficient API-like JSP catalog engine for smooth searching
-            and filtering of grocery products by category.</p>
-        </article>
-        <article class="glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20">
-          <svg viewBox="0 0 24 24" fill="none" class="h-10 w-10 text-orange-300" stroke="currentColor"
-            stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-          </svg>
-          <h3 class="mt-5 font-display text-xl font-semibold">Multi-Stage Docker</h3>
-          <p class="mt-3 text-sm leading-7 text-white/65">A streamlined DevOps pipeline ensuring high availability and
-            robust containerized Tomcat deployments.</p>
-        </article>
       </div>
-    </section>
 
-    <section class="reveal mt-20 lg:mt-24">
-      <div class="mb-8">
-        <p class="text-sm uppercase tracking-[0.28em] text-white/45">Architecture & Patterns</p>
-        <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Technical Architecture & <span
-            class="accent-text">Patterns</span></h2>
+      <!-- Feature 2 -->
+      <div class="col-span-4 bento-card" data-tilt data-tilt-max="3">
+        <div class="feature-icon-wrapper" style="color: var(--glow-purple); border-color: var(--glow-purple);">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--text-primary);">Multi-Role Portals</h3>
+        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">Distinct authorization flows for Customers, Admins
+            (inventory), Support Agents, and Delivery Personnel.</p>
       </div>
-      <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-        <article class="glass rounded-[1.6rem] p-6 sm:p-8">
-          <p class="text-sm uppercase tracking-[0.26em] text-white/45">Design Patterns</p>
-          <div class="mt-5 space-y-5 text-white/72">
-            <div>
-              <h3 class="font-display text-xl font-semibold text-white">Model-View-Controller (MVC)</h3>
-              <p class="mt-2 text-sm leading-7 text-white/65">The system strictly adheres to the MVC structural pattern.
+
+      <!-- Feature 3 -->
+      <div class="col-span-4 bento-card" data-tilt data-tilt-max="3">
+        <div class="feature-icon-wrapper" style="color: var(--glow-amber); border-color: var(--glow-amber);">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--text-primary);">End-to-End Orders</h3>
+        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">Comprehensive transaction handling with an advanced OrderDAO,
+            allowing history views and ongoing tracking.</p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="col-span-4 bento-card" data-tilt data-tilt-max="3">
+        <div class="feature-icon-wrapper" style="color: #00ff88; border-color: #00ff88;">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243-2.829a4 4 0 115.656 5.656L4.5 20.5m10.607-10.607l-2.829 2.829" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--text-primary);">Support Ticketing</h3>
+        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">A built-in module for submitting issues, allowing support
+            agents to interactively review, escalate, and resolve customer tickets.</p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="col-span-4 bento-card" data-tilt data-tilt-max="3">
+        <div class="feature-icon-wrapper" style="color: #ff3b3b; border-color: #ff3b3b;">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--text-primary);">Dynamic Catalog Browsing</h3>
+        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">An efficient API-like JSP catalog engine for smooth searching
+            and filtering of grocery products by category.</p>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="col-span-4 bento-card" data-tilt data-tilt-max="3">
+        <div class="feature-icon-wrapper" style="color: #10b981; border-color: #10b981;">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--text-primary);">Multi-Stage Docker</h3>
+        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">A streamlined DevOps pipeline ensuring high availability and
+            robust containerized Tomcat deployments.</p>
+      </div>
+
+      <!-- Architecture Title -->
+      <div class="col-span-12" style="margin-top: 2rem;">
+        <h2 class="serif-font" style="font-size: 2rem; text-transform: uppercase; text-align: center; color: var(--text-primary);">
+          Architecture <span style="color: var(--glow-amber);">& Patterns</span></h2>
+      </div>
+
+      <!-- Dynamic Arch Block -->
+      <div class="col-span-8 bento-card">
+        
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-size: 1.2rem; color: #10b981; margin-bottom: 0.5rem;">Model-View-Controller (MVC)</h4>
+          <p style="color: var(--text-secondary); line-height: 1.6;">The system strictly adheres to the MVC structural pattern.
                 The Model package contains plain Java Entities, the Servlet package acts as controllers for parsing
                 requests, and the webapp directory houses all JSP views.</p>
-            </div>
-            <div>
-              <h3 class="font-display text-xl font-semibold text-white">Data Access Object (DAO) Pattern</h3>
-              <p class="mt-2 text-sm leading-7 text-white/65">Database interaction is entirely abstracted via DAOs
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-size: 1.2rem; color: #10b981; margin-bottom: 0.5rem;">Data Access Object (DAO) Pattern</h4>
+          <p style="color: var(--text-secondary); line-height: 1.6;">Database interaction is entirely abstracted via DAOs
                 (e.g., OrderDAO). This encapsulates connection logic and SQL logic, distinctly separating database
                 operations from the application's business core.</p>
-            </div>
-            <div>
-              <h3 class="font-display text-xl font-semibold text-white">Stateful Session Management</h3>
-              <p class="mt-2 text-sm leading-7 text-white/65">Relies on Java's native HttpSession mechanism to securely
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-size: 1.2rem; color: #10b981; margin-bottom: 0.5rem;">Stateful Session Management</h4>
+          <p style="color: var(--text-secondary); line-height: 1.6;">Relies on Java's native HttpSession mechanism to securely
                 persist user states, contexts, and dynamic shopping carts without resorting to heavy, repetitive
                 database read operations.</p>
-            </div>
-          </div>
-        </article>
-        <aside class="grid gap-5">
-          <article class="glass rounded-[1.6rem] p-6">
-            <p class="text-sm uppercase tracking-[0.26em] text-white/45">Engineering Complexities</p>
-            <ul class="mt-4 space-y-3 text-sm leading-7 text-white/65">
-              <li><strong>Transactional Integrity:</strong> Checked out orders must simultaneously create a main order
+        </div>
+      </div>
+      <!-- Dynamic Arch Block -->
+      <div class="col-span-4 bento-card">
+        <h3 style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.9rem; margin-bottom: 1.5rem;">Engineering Complexities</h3>
+<ul style="color: var(--text-secondary); line-height: 1.8; padding-left: 1rem; list-style-type: circle;">
+<li>Transactional Integrity: Checked out orders must simultaneously create a main order
                 and multiple item details. Handled via JDBC Batch Processing and RETURN_GENERATED_KEYS to prevent
                 partial inserts.</li>
-              <li><strong>Session Cart Resolution:</strong> Calculating pricing (subtotal, tax, delivery) dynamically in
+<li>Session Cart Resolution: Calculating pricing (subtotal, tax, delivery) dynamically in
                 the session layer via CartControllerServlet for optimal performance.</li>
-              <li><strong>Cloud Database Setup:</strong> Integrated a remote Supabase PostgreSQL database using a
+<li>Cloud Database Setup: Integrated a remote Supabase PostgreSQL database using a
                 singleton JDBC Connection Factory, demanding strict resource handling.</li>
-            </ul>
-          </article>
-          <article class="glass rounded-[1.6rem] p-6">
-            <p class="text-sm uppercase tracking-[0.26em] text-white/45">The Outcome</p>
-            <p class="mt-4 text-sm leading-7 text-white/65">A highly structured, fast, and reliable monolithic
-              application built on enterprise Java patterns capable of handling robust e-commerce logic.</p>
-          </article>
-        </aside>
-      </div>
-    </section>
+</ul>
 
-    <footer class="reveal py-12 text-center text-sm text-white/45">
-      <a href="index.html"
-        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white/75 transition hover:border-white/20 hover:bg-white/10">←
-        Back to Portfolio</a>
+      </div>
+      <!-- Dynamic Arch Block -->
+      <div class="col-span-4 bento-card">
+        <h3 style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.9rem; margin-bottom: 1.5rem;">The Outcome</h3>
+<p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">A highly structured, fast, and reliable monolithic
+              application built on enterprise Java patterns capable of handling robust e-commerce logic.</p>
+
+      </div>
+
+    </div>
+
+    <footer style="margin-top: 4rem; margin-bottom: 2rem; text-align: center;">
+      <a href="index.html#projects" class="back-btn" style="border-color: var(--text-secondary); font-size: 0.8rem;">
+        ← Back to Portfolio
+      </a>
     </footer>
   </main>
 
-  <!-- Scroll to Top Button -->
-  <button id="scrollToTopBtn" class="fixed bottom-8 right-8 w-12 h-12 bg-[#8b5cf6] text-white border-none rounded-full text-xl flex items-center justify-center opacity-0 invisible translate-y-5 transition-all duration-300 z-[1000] shadow-[0_4px_15px_rgba(139,92,246,0.4)] hover:bg-[#7c3aed] hover:-translate-y-1 hover:scale-105 hover:shadow-[0_6px_20px_rgba(139,92,246,0.6)] cursor-pointer" aria-label="Scroll to top">
-      <i class="fas fa-chevron-up"></i>
-  </button>
-
+  <!-- Vanilla-Tilt -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+      max: 5,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.1,
+      gyroscope: false,
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      const isDarkMode = savedTheme === 'dark' || savedTheme === null;
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-    // Scroll to Top Logic
-    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-    if (scrollToTopBtn) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-          scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-5');
-          scrollToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+      function setTheme(isDark) {
+        if (isDark) {
+          document.documentElement.removeAttribute('data-theme');
+          if (themeIcon) { themeIcon.classList.remove('fa-sun'); themeIcon.classList.add('fa-moon'); }
+          localStorage.setItem('theme', 'dark');
         } else {
-          scrollToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-5');
-          scrollToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+          document.documentElement.setAttribute('data-theme', 'light');
+          if (themeIcon) { themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun'); }
+          localStorage.setItem('theme', 'light');
         }
-      });
+      }
+      setTheme(isDarkMode);
 
-      scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          const isCurrentlyDark = !document.documentElement.hasAttribute('data-theme');
+          setTheme(!isCurrentlyDark);
+        });
+      }
+    });
   </script>
 </body>
 
