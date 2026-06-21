@@ -1007,7 +1007,7 @@ h1, h2, h3, .serif-font {
     display: block;
   }
   .bento-dashboard {
-    padding-top: 100px;
+    padding-top: 160px;
     padding-bottom: 2rem;
   }
   .col-span-8, .col-span-6, .col-span-4, .col-span-3 {
@@ -1056,6 +1056,7 @@ h1, h2, h3, .serif-font {
   .navbar {
     width: 95%;
     padding: 0.6rem 1rem;
+    top: 1rem;
   }
   .profile-img-wrap {
     width: 140px;
