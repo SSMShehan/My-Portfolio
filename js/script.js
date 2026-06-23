@@ -596,20 +596,34 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fetch Total Commits using GitHub Search API
         try {
             if (commitsEl) {
-                const commitsRes = await fetch(`https://api.github.com/search/commits?q=author:${username}`, {
-                    headers: {
-                        'Accept': 'application/vnd.github.cloak-preview'
-                    }
-                });
-                if (commitsRes.ok) {
-                    const commitData = await commitsRes.json();
-                    if (commitData && commitData.total_count !== undefined) {
-                        animateValue(commitsEl, 0, commitData.total_count, 1500);
-                    } else {
-                        commitsEl.textContent = '0';
-                    }
+                // Check cache first to avoid GitHub API rate limits (10 req/min)
+                const cachedCommits = localStorage.getItem('gh_commits_cache');
+                const cacheTime = localStorage.getItem('gh_commits_cache_time');
+                const now = new Date().getTime();
+                
+                // Cache for 1 hour (3600000 ms)
+                if (cachedCommits && cacheTime && (now - cacheTime < 3600000)) {
+                    animateValue(commitsEl, 0, parseInt(cachedCommits, 10), 1500);
                 } else {
-                    commitsEl.textContent = '-';
+                    // Removed the cloak-preview header as it triggers CORS preflight and is deprecated
+                    const commitsRes = await fetch(`https://api.github.com/search/commits?q=author:${username}`);
+                    if (commitsRes.ok) {
+                        const commitData = await commitsRes.json();
+                        if (commitData && commitData.total_count !== undefined) {
+                            animateValue(commitsEl, 0, commitData.total_count, 1500);
+                            localStorage.setItem('gh_commits_cache', commitData.total_count);
+                            localStorage.setItem('gh_commits_cache_time', now);
+                        } else {
+                            commitsEl.textContent = '0';
+                        }
+                    } else {
+                        // Fallback to cache if rate limited
+                        if (cachedCommits) {
+                            animateValue(commitsEl, 0, parseInt(cachedCommits, 10), 1500);
+                        } else {
+                            commitsEl.textContent = '-';
+                        }
+                    }
                 }
             }
         } catch (error) {
