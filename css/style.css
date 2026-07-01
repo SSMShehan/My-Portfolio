@@ -1007,7 +1007,7 @@ h1, h2, h3, .serif-font {
     display: block;
   }
   .bento-dashboard {
-    padding-top: 160px;
+    padding-top: 120px;
     padding-bottom: 2rem;
   }
   .col-span-8, .col-span-6, .col-span-4, .col-span-3 {
@@ -1017,6 +1017,10 @@ h1, h2, h3, .serif-font {
     flex-direction: column;
     text-align: center;
     gap: 1.5rem;
+    padding-top: 1rem;
+  }
+  .profile-img-wrap {
+    margin-top: 0.5rem;
   }
   .hero-content {
     align-items: center;
@@ -1062,6 +1066,9 @@ h1, h2, h3, .serif-font {
     width: 140px;
     min-width: 140px;
     height: 182px;
+  }
+  .bento-dashboard {
+    padding-top: 100px;
   }
 }
 
