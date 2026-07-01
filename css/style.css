@@ -1446,120 +1446,80 @@ textarea.form-input { min-height: 150px; resize: vertical; }
   }
 }
 
-/* --- Premium Profile Feature --- */
-.premium-profile-card {
+/* --- Premium Profile Feature (Modern Liquid Blob) --- */
+.profile-img-wrap {
+  width: 250px;
+  height: 250px;
   position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.02);
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-              box-shadow 0.4s ease;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
-/* Spinning conic gradient border */
-.premium-profile-card::before {
-  content: '';
+.profile-aura {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 170%;
-  height: 170%;
-  /* Wide arc: 50% of circle is lit — visible on all sides as border rotates */
-  background: conic-gradient(
-    from 0deg,
-    var(--glow-green)   0%,
-    var(--glow-cyan)   25%,
-    transparent        40%,
-    transparent        60%,
-    var(--glow-cyan)   75%,
-    var(--glow-green) 100%
-  );
-  animation: rotateGlow 3s linear infinite;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--glow-cyan), var(--glow-purple), var(--glow-amber), var(--glow-green));
+  background-size: 300% 300%;
+  animation: auraFlow 8s ease infinite, blobShape 8s ease-in-out infinite;
+  filter: blur(20px);
+  opacity: 0.6;
   z-index: 0;
-  transform-origin: center;
+  transition: opacity 0.5s ease;
 }
 
-/* Inner mask - covers center leaving only the border */
-.premium-profile-card::after {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  background: #050508;
-  border-radius: 20px;
+.premium-profile-card {
+  position: relative;
+  width: 92%;
+  height: 92%;
+  background: var(--glass-bg);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
   z-index: 1;
+  animation: blobShape 8s ease-in-out infinite reverse;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: all 0.5s ease;
 }
 
 .premium-profile-card img {
-  position: relative;
-  z-index: 2;
-  width: calc(100% - 12px);
-  height: calc(100% - 12px);
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 16px;
-  clip-path: inset(2px round 14px);
+  object-position: top;
   filter: var(--profile-brightness);
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
 }
 
-/* Add a floating particle aura behind the card */
-.profile-aura {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 130%;
-  height: 130%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(0,255,102,0.2) 0%, rgba(0,0,0,0) 70%);
+/* Hover States for WOW effect */
+.profile-img-wrap:hover .profile-aura {
+  opacity: 1;
   filter: blur(25px);
-  z-index: -1;
-  animation: pulseAura 3s infinite alternate;
+  animation-duration: 4s, 4s; /* Speed up on hover */
 }
 
-@keyframes pulseAura {
-  0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.4; }
-  100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.9; }
+.profile-img-wrap:hover .premium-profile-card {
+  transform: scale(1.05);
+  border-color: var(--glow-cyan);
+  box-shadow: 0 20px 45px rgba(0, 240, 255, 0.3);
 }
 
-@keyframes rotateGlow {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
+.profile-img-wrap:hover .premium-profile-card img {
+  transform: scale(1.15) rotate(2deg);
+  filter: brightness(1.1) contrast(1.05) saturate(1.1);
 }
 
-/* ===== HOVER STATES ===== */
-.premium-profile-card:hover {
-  transform: scale(1.04) translateY(-8px);
-  /* Box-shadow glows are visible because parent no longer has overflow:hidden */
-  box-shadow:
-    0 0 0 2px var(--glow-cyan),
-    0 0 20px rgba(0, 240, 255, 0.6),
-    0 0 50px rgba(0, 240, 255, 0.3),
-    0 0 80px rgba(0, 255, 102, 0.15),
-    0 30px 60px rgba(0, 0, 0, 0.5);
+@keyframes blobShape {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  33% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  66% { border-radius: 70% 30% 50% 50% / 30% 40% 60% 70%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
 }
 
-.premium-profile-card:hover img {
-  transform: scale(1.04);
-  filter: brightness(1.12) contrast(1.05) saturate(1.1);
-}
-
-/* Full-circle bright border on hover + fast spin */
-.premium-profile-card:hover::before {
-  animation-duration: 1s;
-  background: conic-gradient(
-    from 0deg,
-    var(--glow-cyan)   0%,
-    var(--glow-green) 25%,
-    var(--glow-cyan)  50%,
-    var(--glow-green) 75%,
-    var(--glow-cyan) 100%
-  );
+@keyframes auraFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 
@@ -1625,4 +1585,9 @@ textarea.form-input { min-height: 150px; resize: vertical; }
   .gh-graph-header span {
     font-size: 0.75rem !important;
   }
+}
+
+/* Dark mode mockup image adjustment */
+html:not([data-theme="light"]) .mockup-container img {
+  filter: brightness(0.85);
 }

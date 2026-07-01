@@ -112,11 +112,10 @@
 
             <div class="hero-wrapper" style="width: 100%; gap: 2.5rem; align-items: center;">
                 <!-- Premium Profile Image -->
-                <div class="profile-img-wrap" style="flex-shrink: 0; position: relative;">
+                <div class="profile-img-wrap" style="flex-shrink: 0;">
                     <div class="profile-aura"></div>
                     <div class="premium-profile-card">
-                        <img src="images/profilepicture.png" alt="Shehan Madushanka" width="200" height="260"
-                            style="object-position: 58% 5%;"
+                        <img src="images/profilepicture.png" alt="Shehan Madushanka"
                             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'">
                     </div>
                 </div>
@@ -150,9 +149,34 @@
 
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <a href="#projects" class="btn btn-primary">View Projects</a>
-                        <a href="images/Shehan CV Resume.pdf" target="_blank" class="btn btn-outline">
+                        <a href="images/Shehan CV Resume.pdf" class="btn btn-outline" id="resume-download-btn">
                             <i class="fas fa-download" style="margin-right: 8px;"></i>Resume
                         </a>
+                        <script>
+                            document.getElementById('resume-download-btn').addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const btn = this;
+                                const originalText = btn.innerHTML;
+                                btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i>Downloading...';
+                                fetch(btn.href)
+                                    .then(res => res.blob())
+                                    .then(blob => {
+                                        const url = window.URL.createObjectURL(blob);
+                                        const a = document.createElement('a');
+                                        a.href = url;
+                                        a.download = 'Shehan_Madushanka_Resume.pdf';
+                                        document.body.appendChild(a);
+                                        a.click();
+                                        a.remove();
+                                        window.URL.revokeObjectURL(url);
+                                        btn.innerHTML = originalText;
+                                    })
+                                    .catch(err => {
+                                        window.open(btn.href, '_blank');
+                                        btn.innerHTML = originalText;
+                                    });
+                            });
+                        </script>
                         <a href="#contact" class="btn btn-outline">Let's Talk</a>
                     </div>
                 </div>
