@@ -33,12 +33,9 @@
     <div class="ambient-orb orb-2"></div>
     <div class="ambient-orb orb-3"></div>
 
-    <!-- Navigation -->
+    <!-- Navigation (Desktop Pill Navbar) -->
     <nav class="navbar">
         <div class="nav-container">
-            <button class="hamburger" id="hamburger-menu" aria-label="Open Menu">
-                <i class="fas fa-bars"></i>
-            </button>
             <ul class="nav-links">
                 <li><a href="#skills">Experience</a></li>
                 <li><a href="#about">About</a></li>
@@ -54,19 +51,58 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobile-menu">
-        <button class="hamburger" id="close-menu" aria-label="Close Menu" style="position: absolute; top: 2rem; right: 2rem; font-size: 2rem;">
-            <i class="fas fa-times"></i>
-        </button>
-        <ul class="mobile-menu-links">
-            <li><a href="#skills" class="mobile-link">Experience</a></li>
-            <li><a href="#about" class="mobile-link">About</a></li>
-            <li><a href="#projects" class="mobile-link">Projects</a></li>
-            <li><a href="#certifications" class="mobile-link">Certificates</a></li>
-            <li><a href="#contact" class="mobile-link" style="color: var(--glow-amber);">Let's Talk</a></li>
-        </ul>
-    </div>
+    <!-- ========= MOBILE ONLY FLOATING CONTROLS ========= -->
+    <button class="mob-fab mob-fab--menu" id="mob-hamburger" aria-label="Open Menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    <button class="mob-fab mob-fab--theme" id="mob-theme-toggle" aria-label="Toggle Theme">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- ========= MOBILE SIDE DRAWER ========= -->
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <span class="drawer-logo">SM</span>
+            <button class="drawer-close" id="drawer-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="drawer-nav">
+            <ul>
+                <li>
+                    <a href="#skills" class="drawer-link">
+                        <span class="drawer-link-icon"><i class="fas fa-code"></i></span>
+                        <span>Experience</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#about" class="drawer-link">
+                        <span class="drawer-link-icon"><i class="fas fa-user"></i></span>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#projects" class="drawer-link">
+                        <span class="drawer-link-icon"><i class="fas fa-laptop-code"></i></span>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#certifications" class="drawer-link">
+                        <span class="drawer-link-icon"><i class="fas fa-certificate"></i></span>
+                        <span>Certificates</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="drawer-footer">
+            <a href="#contact" class="drawer-cta-btn drawer-link">
+                <i class="fas fa-paper-plane" style="margin-right: 0.5rem;"></i>
+                Let's Talk
+            </a>
+        </div>
+    </aside>
 
     <!-- Main Bento Dashboard -->
     <main class="container bento-dashboard">
@@ -1203,30 +1239,56 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Mobile Menu JS -->
+    <!-- Mobile Drawer JS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const hamburger = document.getElementById('hamburger-menu');
-            const closeMenu = document.getElementById('close-menu');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileLinks = document.querySelectorAll('.mobile-link');
+            const mobHamburger = document.getElementById('mob-hamburger');
+            const drawer = document.getElementById('mobile-drawer');
+            const drawerClose = document.getElementById('drawer-close');
+            const backdrop = document.getElementById('drawer-backdrop');
+            const drawerLinks = document.querySelectorAll('.drawer-link');
+            const mobThemeToggle = document.getElementById('mob-theme-toggle');
 
-            function openMobileMenu() {
-                mobileMenu.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            function openDrawer() {
+                drawer.classList.add('open');
+                backdrop.classList.add('open');
+                drawer.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
             }
 
-            function closeMobileMenu() {
-                mobileMenu.classList.remove('active');
+            function closeDrawer() {
+                drawer.classList.remove('open');
+                backdrop.classList.remove('open');
+                drawer.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
             }
 
-            if (hamburger) hamburger.addEventListener('click', openMobileMenu);
-            if (closeMenu) closeMenu.addEventListener('click', closeMobileMenu);
+            if (mobHamburger) mobHamburger.addEventListener('click', openDrawer);
+            if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+            if (backdrop) backdrop.addEventListener('click', closeDrawer);
 
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', closeMobileMenu);
+            drawerLinks.forEach(link => {
+                link.addEventListener('click', closeDrawer);
             });
+
+            // Mobile theme toggle mirrors the desktop one
+            if (mobThemeToggle) {
+                mobThemeToggle.addEventListener('click', () => {
+                    const desktopToggle = document.getElementById('theme-toggle');
+                    if (desktopToggle) desktopToggle.click();
+                });
+            }
+
+            // Keep mobile theme FAB icon in sync with current theme
+            function syncMobThemeIcon() {
+                const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+                if (mobThemeToggle) {
+                    mobThemeToggle.querySelector('i').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+                }
+            }
+            syncMobThemeIcon();
+            const themeObserver = new MutationObserver(syncMobThemeIcon);
+            themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
         });
     </script>
 </body>
