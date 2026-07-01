@@ -1469,11 +1469,14 @@ textarea.form-input { min-height: 150px; resize: vertical; }
 .premium-profile-card::before {
   content: '';
   position: absolute;
+  top: 50%;
+  left: 50%;
   width: 160%;
   height: 160%;
   background: conic-gradient(from 0deg, transparent 0%, transparent 60%, var(--glow-cyan) 80%, var(--glow-green) 100%);
   animation: rotateGlow 4s linear infinite;
   z-index: 0;
+  transform-origin: center;
 }
 
 .premium-profile-card::after {
@@ -1518,8 +1521,8 @@ textarea.form-input { min-height: 150px; resize: vertical; }
 }
 
 @keyframes rotateGlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .premium-profile-card:hover {
