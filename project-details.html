@@ -247,11 +247,11 @@
           <h3 class="serif-font" style="font-size: 1.8rem;">Dashboard Preview</h3>
 
         </div>
-        <div class="mockup-container" style="padding: 0; background: transparent; display: grid; position: relative;">
-          <img src="images/projects/verity_dashboard.png" class="slide-img active" alt="Verity Dashboard 1" style="grid-area: 1 / 1; width: 100%; height: auto; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); display: block; align-self: start;">
-          <img src="images/projects/verity_dashboard_2.png" class="slide-img" alt="Verity Dashboard 2" style="grid-area: 1 / 1; width: 100%; height: auto; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); display: block; align-self: start;">
-          <img src="images/projects/verity_dashboard_1.png" class="slide-img" alt="Verity Dashboard 3" style="grid-area: 1 / 1; width: 100%; height: auto; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); display: block; align-self: start;">
-          <img src="images/projects/verity_dashboard_3.png" class="slide-img" alt="Verity Dashboard 4" style="grid-area: 1 / 1; width: 100%; height: auto; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); display: block; align-self: start;">
+        <div class="mockup-container" id="slide-container" style="padding: 0; background: transparent; position: relative; transition: height 0.5s ease;">
+          <img src="images/projects/verity_dashboard.png" class="slide-img active" alt="Verity Dashboard 1" style="position: absolute; top: 0; left: 0; width: 100%; height: auto; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); display: block;">
+          <img src="images/projects/verity_dashboard_2.png" class="slide-img" alt="Verity Dashboard 2" style="position: absolute; top: 0; left: 0; width: 100%; height: auto; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); display: block;">
+          <img src="images/projects/verity_dashboard_1.png" class="slide-img" alt="Verity Dashboard 3" style="position: absolute; top: 0; left: 0; width: 100%; height: auto; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); display: block;">
+          <img src="images/projects/verity_dashboard_3.png" class="slide-img" alt="Verity Dashboard 4" style="position: absolute; top: 0; left: 0; width: 100%; height: auto; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); display: block;">
           
           <button class="slider-btn prev" onclick="changeSlide(-1)" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
           <button class="slider-btn next" onclick="changeSlide(1)" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
@@ -484,28 +484,53 @@
     // Manual & Auto Slideshow Logic
     let currentSlideIndex = 0;
     const slides = document.querySelectorAll('.slide-img');
+    const slideContainer = document.getElementById('slide-container');
     let slideInterval;
+
+    function updateContainerHeight() {
+      const activeSlide = slides[currentSlideIndex];
+      if (!activeSlide || !slideContainer) return;
+      // Use naturalHeight/naturalWidth ratio to compute rendered height
+      const rendered = activeSlide.getBoundingClientRect();
+      if (rendered.height > 0) {
+        slideContainer.style.height = rendered.height + 'px';
+      } else {
+        // Image not loaded yet — wait for load
+        activeSlide.onload = () => {
+          slideContainer.style.height = activeSlide.getBoundingClientRect().height + 'px';
+        };
+      }
+    }
 
     function showSlide(index) {
       if(slides.length === 0) return;
       slides.forEach(s => s.classList.remove('active'));
       currentSlideIndex = (index + slides.length) % slides.length;
       slides[currentSlideIndex].classList.add('active');
+      updateContainerHeight();
     }
 
     window.changeSlide = function(direction) {
-      clearInterval(slideInterval); // Stop auto slide on manual interaction
+      clearInterval(slideInterval);
       showSlide(currentSlideIndex + direction);
     };
 
     function startAutoSlide() {
       slideInterval = setInterval(() => {
         showSlide(currentSlideIndex + 1);
-      }, 4000); // 4 seconds per slide
+      }, 4000);
     }
 
-    if(slides.length > 0) {
+    // Set initial height after all images load
+    window.addEventListener('load', () => {
+      updateContainerHeight();
       startAutoSlide();
+    });
+
+    // Fallback if load already fired
+    if (document.readyState === 'complete') {
+      updateContainerHeight();
+      if(slides.length > 0) startAutoSlide();
     }
   </script>
 </body>
